@@ -1,0 +1,535 @@
+{
+    "PVSFarmInformation":  {
+                               "Version":  "7.13.0.13008",
+                               "General":  {
+                                               "FarmName":  "MyFarm",
+                                               "Description":  ""
+                                           },
+                               "Security":  [
+                                                {
+                                                    "AuthGroupName":  "JimMoyle.local/Builtin/Administrators"
+                                                },
+                                                {
+                                                    "AuthGroupName":  "JimMoyle.local/Users/Domain Admins"
+                                                }
+                                            ],
+                               "Groups":  [
+                                              {
+                                                  "AuthGroupName":  "JimMoyle.local/Builtin/Administrators"
+                                              },
+                                              {
+                                                  "AuthGroupName":  "JimMoyle.local/Users/Domain Admins"
+                                              },
+                                              {
+                                                  "AuthGroupName":  "JimMoyle.local/Users/PVSLondonSiteAdmins"
+                                              }
+                                          ],
+                               "Licensing":  {
+                                                 "LicenseServer":  "CTX01",
+                                                 "LicenseServerPort":  27000,
+                                                 "LicenseTradeUp":  true
+                                             },
+                               "Options":  {
+                                               "AutoAddEnabled":  true,
+                                               "DefaultSiteName":  "MySite2",
+                                               "AuditingEnabled":  true,
+                                               "OfflineDatabaseSupportEnabled":  false,
+                                               "CeipEnabled":  1
+                                           },
+                               "vDiskVersion":  {
+                                                    "MaxVersions":  5,
+                                                    "AutomaticMergeEnabled":  true,
+                                                    "MergeMode":  2
+                                                },
+                               "Status":  {
+                                              "DatabaseServerName":  "CTX01",
+                                              "DatabaseInstanceName":  "SQLEXPRESS",
+                                              "DatabaseName":  "ProvisioningServices",
+                                              "FailoverPartnerServerName":  "",
+                                              "FailoverPartnerInstanceName":  "",
+                                              "MultiSubnetFailover":  "False",
+                                              "AdGroupsEnabled":  true
+                                          },
+                               "ProblemReport":  {
+                                                     "UserName":  "jimmoyle"
+                                                 }
+                           },
+    "Sites":  [
+                  {
+                      "SiteName":  "MySite",
+                      "Properties":  {
+                                         "General":  {
+                                                         "Name":  "MySite",
+                                                         "Description":  "Jim MySite Description"
+                                                     },
+                                         "Security":  {
+                                                          "AuthGroupName":  "JimMoyle.local/Users/PVSLondonSiteAdmins"
+                                                      },
+                                         "MAK":  {
+                                                     "MakUser":  "",
+                                                     "MakPassword":  ""
+                                                 },
+                                         "Options":  {
+                                                         "AutoAddEnabled":  true,
+                                                         "DefaultCollectionName":  "MyCollection",
+                                                         "InventoryFilePollingInterval":  60
+                                                     },
+                                         "vDiskUpdate":  {
+                                                             "EnableDiskUpdate":  false,
+                                                             "DiskUpdateServerName":  "PVS01"
+                                                         }
+                                     },
+                      "Servers":  [
+                                      {
+                                          "Name":  "PVS01",
+                                          "General":  {
+                                                          "ServerName":  "PVS01",
+                                                          "Description":  "",
+                                                          "PowerRating":  1,
+                                                          "EventLoggingEnabled":  true
+                                                      },
+                                          "Network":  {
+                                                          "Ip":  "192.168.16.30",
+                                                          "FirstPort":  6910,
+                                                          "LastPort":  6930,
+                                                          "ManagementIp":  "192.168.16.30"
+                                                      },
+                                          "Stores":  [
+                                                         {
+                                                             "Store":  {
+                                                                           "Path":  "C:\\Store",
+                                                                           "CachePath":  [
+                                                                                             ""
+                                                                                         ]
+                                                                       }
+                                                         },
+                                                         {
+                                                             "Store2":  {
+                                                                            "Path":  "C:\\Store2",
+                                                                            "CachePath":  [
+                                                                                              "C:\\Store2"
+                                                                                          ]
+                                                                        }
+                                                         }
+                                                     ],
+                                          "Options":  {
+                                                          "AdMaxPasswordAgeEnabled":  true,
+                                                          "AdMaxPasswordAge":  7
+                                                      },
+                                          "ProblemReport":  {
+                                                                "LastBugReportAttempt":  null,
+                                                                "LastBugReportSummary":  "",
+                                                                "LastBugReportStatus":  "",
+                                                                "LastBugReportResult":  ""
+                                                            },
+                                          "Advanced":  {
+                                                           "Server":  {
+                                                                          "ThreadsPerPort":  8,
+                                                                          "BuffersPerThread":  24,
+                                                                          "ServerCacheTimeout":  8,
+                                                                          "LocalConcurrentIoLimit":  4,
+                                                                          "RemoteConcurrentIoLimit":  4
+                                                                      },
+                                                           "Network":  {
+                                                                           "MaxTransmissionUnits":  1506,
+                                                                           "IoBurstSize":  32768,
+                                                                           "NonBlockingIoEnabled":  true
+                                                                       },
+                                                           "Pacing":  {
+                                                                          "BootPauseSeconds":  10,
+                                                                          "MaxBootSeconds":  60,
+                                                                          "MaxBootDevicesAllowed":  500,
+                                                                          "VDiskCreatePacing":  0
+                                                                      },
+                                                           "Device":  {
+                                                                          "LicenseTimeout":  30
+                                                                      }
+                                                       },
+                                          "ConfigureBootstrap":  {
+                                                                     "General":  [
+                                                                                     {
+                                                                                         "ARDBP32.BIN":  {
+                                                                                                             "bootserver1_Ip":  "192.168.16.30",
+                                                                                                             "Bootserver1_Port":  6910,
+                                                                                                             "bootserver1_Netmask":  "0.0.0.0",
+                                                                                                             "bootserver1_Gateway":  "0.0.0.0",
+                                                                                                             "bootserver2_Ip":  "192.168.16.99",
+                                                                                                             "Bootserver2_Port":  6910,
+                                                                                                             "bootserver2_Netmask":  "255.255.0.0",
+                                                                                                             "bootserver2_Gateway":  "192.0.168.1",
+                                                                                                             "bootserver3_Ip":  "0.0.0.0",
+                                                                                                             "Bootserver3_Port":  0,
+                                                                                                             "bootserver3_Netmask":  "0.0.0.0",
+                                                                                                             "bootserver3_Gateway":  "0.0.0.0",
+                                                                                                             "bootserver4_Ip":  "0.0.0.0",
+                                                                                                             "Bootserver4_Port":  0,
+                                                                                                             "bootserver4_Netmask":  "0.0.0.0",
+                                                                                                             "bootserver4_Gateway":  "0.0.0.0"
+                                                                                                         }
+                                                                                     }
+                                                                                 ],
+                                                                     "Options":  {
+                                                                                     "VerboseMode":  false,
+                                                                                     "InterruptSafeMode":  false,
+                                                                                     "PaeMode":  true,
+                                                                                     "BootFromHdOnFail":  false,
+                                                                                     "RecoveryTime":  50,
+                                                                                     "PollingTimeout":  5000,
+                                                                                     "GeneralTimeout":  30000
+                                                                                 }
+                                                                 }
+                                      }
+                                  ],
+                      "vDiskPool":  [
+                                        {
+                                            "Name":  "Win10",
+                                            "Properties":  {
+                                                               "General":  {
+                                                                               "SiteName":  "MySite",
+                                                                               "StoreName":  "Store",
+                                                                               "DiskLocatorName":  "Win10",
+                                                                               "DiskSize":  34359738368,
+                                                                               "VhdBlockSize":  32768,
+                                                                               "WriteCacheType":  9,
+                                                                               "WriteCacheSize":  64,
+                                                                               "MenuText":  "",
+                                                                               "AdPasswordEnabled":  true,
+                                                                               "PrinterManagementEnabled":  false,
+                                                                               "Enabled":  true,
+                                                                               "ClearCacheDisabled":  "0"
+                                                                           },
+                                                               "Identification":  {
+                                                                                      "Description":  "",
+                                                                                      "Date":  "03/07/2017  10:21:50",
+                                                                                      "Author":  "",
+                                                                                      "Title":  "",
+                                                                                      "InternalName":  "C:\\Store\\Win10.vhdx",
+                                                                                      "OriginalFile":  "C:\\Store\\Win10.vhdx",
+                                                                                      "HardwareTarget":  ""
+                                                                                  },
+                                                               "MicrosoftVolumeLicensing":  {
+                                                                                                "LicenseMode":  0
+                                                                                            },
+                                                               "AutoUpdate":  {
+                                                                                  "AutoUpdateEnabled":  false,
+                                                                                  "ActivationDateEnabled":  false,
+                                                                                  "ActiveDate":  null,
+                                                                                  "Class":  "",
+                                                                                  "ImageType":  "",
+                                                                                  "MajorRelease":  1,
+                                                                                  "MinorRelease":  0,
+                                                                                  "Build":  1,
+                                                                                  "Serial":  null
+                                                                              }
+                                                           },
+                                            "Versions":  [
+                                                             {
+                                                                 "Version0":  {
+                                                                                  "Version":  0,
+                                                                                  "CreateDate":  "2017-03-07 10:22",
+                                                                                  "ScheduledDate":  null,
+                                                                                  "DeviceCount":  0,
+                                                                                  "Access":  0,
+                                                                                  "Type":  0,
+                                                                                  "Description":  "",
+                                                                                  "CanDelete":  false,
+                                                                                  "CanMerge":  false,
+                                                                                  "CanMergeBase":  false,
+                                                                                  "CanPromote":  false,
+                                                                                  "CanRevertTest":  false,
+                                                                                  "CanRevertMaintenance":  false,
+                                                                                  "CanSetScheduledDate":  false,
+                                                                                  "CanOverride":  true,
+                                                                                  "IsPending":  false,
+                                                                                  "GoodInventoryStatus":  true,
+                                                                                  "DiskFileName":  "Win10.vhdx"
+                                                                              }
+                                                             }
+                                                         ],
+                                            "LoadBalancing":  {
+                                                                  "ServerName":  "PVS01",
+                                                                  "RebalanceEnabled":  false,
+                                                                  "RebalanceTriggerPercent":  25
+                                                              }
+                                        }
+                                    ],
+                      "vDiskUpdateManagement":  {
+                                                    "vDisks":  [
+                                                                   {
+                                                                       "Name":  "Store\\Win10",
+                                                                       "StoreName":  "Store",
+                                                                       "DisklocatorName":  "Win10",
+                                                                       "General":  {
+                                                                                       "StoreName":  "Store",
+                                                                                       "DiskLocatorName":  "Win10",
+                                                                                       "VirtualHostingPoolName":  "SiM",
+                                                                                       "DeviceName":  "PVSMaster",
+                                                                                       "DeviceMac":  {
+
+                                                                                                     },
+                                                                                       "Port":  6901
+                                                                                   },
+                                                                       "Personality":  {
+                                                                                           "Name":  "MyString",
+                                                                                           "Value":  "MyData"
+                                                                                       },
+                                                                       "Status":  {
+                                                                                      "Status":  ""
+                                                                                  },
+                                                                       "Logging":  {
+                                                                                       "LogLevel":  1
+                                                                                   }
+                                                                   }
+                                                               ],
+                                                    "Tasks":  [
+                                                                  {
+                                                                      "UpdateTaskName":  "MyTask",
+                                                                      "General":  {
+                                                                                      "UpdateTaskName":  "MyTask",
+                                                                                      "Description":  "",
+                                                                                      "Enableddescription":  null,
+                                                                                      "Enabled":  true
+                                                                                  },
+                                                                      "Schedule":  {
+                                                                                       "Recurrence":  0,
+                                                                                       "DayMask":  1
+                                                                                   },
+                                                                      "vDisks":  {
+                                                                                     "Store\\Win10":  {
+                                                                                                          "StoreName":  "Store",
+                                                                                                          "DiskLocatorName":  "Win10",
+                                                                                                          "VirtualHostingPoolName":  "SiM",
+                                                                                                          "DeviceName":  "PVSMaster"
+                                                                                                      }
+                                                                                 },
+                                                                      "ESD":  {
+                                                                                  "EsdType":  ""
+                                                                              },
+                                                                      "Scripts":  {
+
+                                                                                  },
+                                                                      "Access":  {
+                                                                                     "PostUpdateApprove":  0
+                                                                                 }
+                                                                  }
+                                                              ]
+                                                },
+                      "DeviceCollections":  [
+                                                {
+                                                    "General":  {
+                                                                    "CollectionName":  "jim",
+                                                                    "Description":  "My Collection Description"
+                                                                },
+                                                    "Security":  [
+                                                                     {
+                                                                         "Role":  300,
+                                                                         "Name":  "JimMoyle.local/Builtin/Administrators"
+                                                                     },
+                                                                     {
+                                                                         "Role":  400,
+                                                                         "Name":  "JimMoyle.local/Users/PVSLondonSiteAdmins"
+                                                                     }
+                                                                 ],
+                                                    "AutoAdd":  {
+                                                                    "TemplateDeviceName":  "",
+                                                                    "AutoAddPrefix":  "",
+                                                                    "AutoAddNumberLength":  4,
+                                                                    "AutoAddZeroFill":  true,
+                                                                    "AutoAddSuffix":  "",
+                                                                    "LastAutoAddDeviceNumber":  0
+                                                                }
+                                                },
+                                                {
+                                                    "General":  {
+                                                                    "CollectionName":  "MyCollection",
+                                                                    "Description":  ""
+                                                                },
+                                                    "Security":  {
+
+                                                                 },
+                                                    "AutoAdd":  {
+                                                                    "TemplateDeviceName":  "",
+                                                                    "AutoAddPrefix":  "",
+                                                                    "AutoAddNumberLength":  4,
+                                                                    "AutoAddZeroFill":  true,
+                                                                    "AutoAddSuffix":  "",
+                                                                    "LastAutoAddDeviceNumber":  0
+                                                                }
+                                                }
+                                            ],
+                      "Hosts":  [
+                                    {
+                                        "General":  {
+                                                        "Type":  2,
+                                                        "Name":  "SiM",
+                                                        "Description":  "MyVirtualHostDescription",
+                                                        "VirtualHostingPoolName":  "SiM",
+                                                        "Server":  "https://vcenter.mycloud.local/sdk",
+                                                        "Datacenter":  "Datacenter"
+                                                    },
+                                        "Credentials":  {
+                                                            "UserName":  "administrator",
+                                                            "Password":  "******"
+                                                        },
+                                        "vDiskUpdate":  {
+                                                            "UpdateLimit":  1000,
+                                                            "UpdateTimeout":  60,
+                                                            "ShutdownTimeout":  10
+                                                        }
+                                    }
+                                ]
+                  },
+                  {
+                      "SiteName":  "MySite2",
+                      "Properties":  {
+                                         "General":  {
+                                                         "Name":  "MySite2",
+                                                         "Description":  ""
+                                                     },
+                                         "Security":  {
+
+                                                      },
+                                         "MAK":  {
+                                                     "MakUser":  "",
+                                                     "MakPassword":  ""
+                                                 },
+                                         "Options":  {
+                                                         "AutoAddEnabled":  true,
+                                                         "DefaultCollectionName":  "",
+                                                         "InventoryFilePollingInterval":  60
+                                                     },
+                                         "vDiskUpdate":  {
+                                                             "EnableDiskUpdate":  false,
+                                                             "DiskUpdateServerName":  ""
+                                                         }
+                                     },
+                      "Servers":  [
+
+                                  ],
+                      "vDiskPool":  [
+
+                                    ],
+                      "vDiskUpdateManagement":  {
+                                                    "vDisks":  [
+
+                                                               ],
+                                                    "Tasks":  [
+
+                                                              ]
+                                                },
+                      "DeviceCollections":  [
+
+                                            ],
+                      "Hosts":  [
+                                    {
+                                        "General":  {
+
+                                                    },
+                                        "Credentials":  {
+
+                                                        },
+                                        "vDiskUpdate":  {
+
+                                                        }
+                                    }
+                                ]
+                  },
+                  {
+                      "SiteName":  "Site3",
+                      "Properties":  {
+                                         "General":  {
+                                                         "Name":  "Site3",
+                                                         "Description":  ""
+                                                     },
+                                         "Security":  {
+
+                                                      },
+                                         "MAK":  {
+                                                     "MakUser":  "",
+                                                     "MakPassword":  ""
+                                                 },
+                                         "Options":  {
+                                                         "AutoAddEnabled":  true,
+                                                         "DefaultCollectionName":  "",
+                                                         "InventoryFilePollingInterval":  60
+                                                     },
+                                         "vDiskUpdate":  {
+                                                             "EnableDiskUpdate":  false,
+                                                             "DiskUpdateServerName":  ""
+                                                         }
+                                     },
+                      "Servers":  [
+
+                                  ],
+                      "vDiskPool":  [
+
+                                    ],
+                      "vDiskUpdateManagement":  {
+                                                    "vDisks":  [
+
+                                                               ],
+                                                    "Tasks":  [
+
+                                                              ]
+                                                },
+                      "DeviceCollections":  [
+
+                                            ],
+                      "Hosts":  [
+                                    {
+                                        "General":  {
+
+                                                    },
+                                        "Credentials":  {
+
+                                                        },
+                                        "vDiskUpdate":  {
+
+                                                        }
+                                    }
+                                ]
+                  }
+              ],
+    "Stores":  [
+                   {
+                       "Paths":  {
+                                     "DefaultStorePath":  "C:\\Store",
+                                     "DefaultWriteCachePaths":  [
+                                                                    ""
+                                                                ]
+                                 },
+                       "Servers":  {
+                                       "Site":  "MySite",
+                                       "Servers":  [
+                                                       "PVS01"
+                                                   ]
+                                   },
+                       "General":  {
+                                       "Name":  "Store",
+                                       "Description":  "",
+                                       "SiteName":  "MySite",
+                                       "FreeSpace":  15819
+                                   }
+                   },
+                   {
+                       "Paths":  {
+                                     "DefaultStorePath":  "C:\\Store2",
+                                     "DefaultWriteCachePaths":  [
+                                                                    "C:\\Store2"
+                                                                ]
+                                 },
+                       "Servers":  {
+                                       "Site":  "MySite",
+                                       "Servers":  [
+                                                       "PVS01"
+                                                   ]
+                                   },
+                       "General":  {
+                                       "Name":  "Store2",
+                                       "Description":  "",
+                                       "SiteName":  "MySite",
+                                       "FreeSpace":  15819
+                                   }
+                   }
+               ]
+}
