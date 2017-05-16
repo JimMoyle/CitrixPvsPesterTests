@@ -11,25 +11,25 @@
 	plain text or HTML.
 
 	Word is NOT needed to run the script. This script will output in Text and HTML.
-	
-	You do NOT have to run this script on a PVS Server. This script was developed and run 
+
+	You do NOT have to run this script on a PVS Server. This script was developed and run
 	from a Windows 8.1 VM.
-	
+
 	You can run this script remotely using the -AdminAddress (AA) parameter.
-	
-	The PVS Console must be installed and the snap-in registered on the computer running 
+
+	The PVS Console must be installed and the snap-in registered on the computer running
 	the script.
-	
+
 	For Windows 8.x, Server 2012 and Server 2012 R2, run:
 		For 32-bit:
 			%systemroot%\Microsoft.NET\Framework\v4.0.30319\installutil.exe "%ProgramFiles%\Citrix\Provisioning Services Console\Citrix.PVS.SnapIn.dll"
 		For 64-bit:
 			%systemroot%\Microsoft.NET\Framework64\v4.0.30319\installutil.exe "%ProgramFiles%\Citrix\Provisioning Services Console\Citrix.PVS.SnapIn.dll"
-	
+
 	Creates an output file named after the PVS farm.
-	
+
 	Word and PDF Document includes a Cover Page, Table of Contents and Footer.
-	
+
 	Includes support for the following language versions of Microsoft Word:
 		Catalan
 		Chinese
@@ -45,9 +45,9 @@
 		Swedish
 
 .PARAMETER CompanyName
-	Company Name to use for the Cover Page.  
+	Company Name to use for the Cover Page.
 	Default value is contained in HKCU:\Software\Microsoft\Office\Common\UserInfo\CompanyName or
-	HKCU:\Software\Microsoft\Office\Common\UserInfo\Company, whichever is populated on the 
+	HKCU:\Software\Microsoft\Office\Common\UserInfo\Company, whichever is populated on the
 	computer running the script.
 	This parameter has an alias of CN.
 	If either registry key does not exist and this parameter is not specified, the report will
@@ -57,13 +57,13 @@
 	What Microsoft Word Cover Page to use.
 	Only Word 2010, 2013 and 2016 are supported.
 	(default cover pages in Word en-US)
-	
+
 	Valid input is:
 		Alphabet (Word 2010. Works)
 		Annual (Word 2010. Doesn't work well for this report)
 		Austere (Word 2010. Works)
-		Austin (Word 2010/2013/2016. Doesn't work in 2013 or 2016, mostly works in 2010 but 
-						Subtitle/Subject & Author fields need to be moved 
+		Austin (Word 2010/2013/2016. Doesn't work in 2013 or 2016, mostly works in 2010 but
+						Subtitle/Subject & Author fields need to be moved
 						after title box is moved up)
 		Banded (Word 2013/2016. Works)
 		Conservative (Word 2010. Works)
@@ -74,16 +74,16 @@
 		Filigree (Word 2013/2016. Works)
 		Grid (Word 2010/2013/2016. Works in 2010)
 		Integral (Word 2013/2016. Works)
-		Ion (Dark) (Word 2013/2016. Top date doesn't fit; box needs to be manually resized or font 
+		Ion (Dark) (Word 2013/2016. Top date doesn't fit; box needs to be manually resized or font
 						changed to 8 point)
-		Ion (Light) (Word 2013/2016. Top date doesn't fit; box needs to be manually resized or font 
+		Ion (Light) (Word 2013/2016. Top date doesn't fit; box needs to be manually resized or font
 						changed to 8 point)
 		Mod (Word 2010. Works)
 		Motion (Word 2010/2013/2016. Works if top date is manually changed to 36 point)
 		Newsprint (Word 2010. Works but date is not populated)
 		Perspective (Word 2010. Works)
 		Pinstripes (Word 2010. Works)
-		Puzzle (Word 2010. Top date doesn't fit; box needs to be manually resized or font 
+		Puzzle (Word 2010. Top date doesn't fit; box needs to be manually resized or font
 					changed to 14 point)
 		Retrospect (Word 2013/2016. Works)
 		Semaphore (Word 2013/2016. Works)
@@ -95,7 +95,7 @@
 		Transcend (Word 2010. Works)
 		ViewMaster (Word 2013/2016. Works)
 		Whisp (Word 2013/2016. Works)
-		
+
 	Default value is Sideline.
 	This parameter has an alias of CP.
 	This parameter is only valid with the MSWORD and PDF output parameters.
@@ -124,34 +124,34 @@
 	This parameter is disabled by default.
 	This parameter has an alias of HW.
 .PARAMETER AdminAddress
-	Specifies the name of a PVS server that the PowerShell script will connect to. 
+	Specifies the name of a PVS server that the PowerShell script will connect to.
 	Using this parameter requires the script be run from an elevated PowerShell session.
 	Starting with V5.04 of the script, this requirement is now checked.
 	This parameter has an alias of AA.
 .PARAMETER User
-	Specifies the user used for the AdminAddress connection. 
+	Specifies the user used for the AdminAddress connection.
 .PARAMETER Domain
-	Specifies the domain used for the AdminAddress connection. 
+	Specifies the domain used for the AdminAddress connection.
 .PARAMETER Password
-	Specifies the password used for the AdminAddress connection. 
+	Specifies the password used for the AdminAddress connection.
 .PARAMETER StartDate
 	Start date for the Audit Trail report.
 
 	Format for date only is MM/DD/YYYY.
-	
+
 	Format to include a specific time range is "MM/DD/YYYY HH:MM:SS" in 24 hour format.
 	The double quotes are needed.
-	
+
 	Default is today's date minus seven days.
 	This parameter has an alias of SD.
 .PARAMETER EndDate
 	End date for the Audit Trail report.
 
 	Format for date only is MM/DD/YYYY.
-	
+
 	Format to include a specific time range is "MM/DD/YYYY HH:MM:SS" in 24 hour format.
 	The double quotes are needed.
-	
+
 	Default is today's date.
 	This parameter has an alias of ED.
 .PARAMETER AddDateTime
@@ -162,11 +162,11 @@
 	This parameter is disabled by default.
 	This parameter has an alias of ADT.
 .PARAMETER Folder
-	Specifies the optional output folder to save the output report. 
+	Specifies the optional output folder to save the output report.
 .PARAMETER SmtpServer
-	Specifies the optional email server to send the output report. 
+	Specifies the optional email server to send the output report.
 .PARAMETER SmtpPort
-	Specifies the SMTP port. 
+	Specifies the SMTP port.
 	Default is 25.
 .PARAMETER UseSSL
 	Specifies whether to use SSL for the SmtpServer.
@@ -180,20 +180,20 @@
 .PARAMETER Dev
 	Clears errors at the beginning of the script.
 	Outputs all errors to a text file at the end of the script.
-	
+
 	This is used when the script developer requests more troubleshooting data.
 	Text file is placed in the same folder from where the script is run.
-	
+
 	This parameter is disabled by default.
 .PARAMETER ScriptInfo
 	Outputs information about the script to a text file.
 	Text file is placed in the same folder from where the script is run.
-	
+
 	This parameter is disabled by default.
 	This parameter has an alias of SI.
 .EXAMPLE
 	PS C:\PSScript > .\PVS_Inventory_V5.ps1
-	
+
 	Will use all Default values.
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\Company="Carl Webster"
 	$env:username = Administrator
@@ -204,8 +204,8 @@
 	Administrator for the User Name.
 	LocalHost for AdminAddress.
 .EXAMPLE
-	PS C:\PSScript > .\PVS_Inventory_V5.ps1 -PDF 
-	
+	PS C:\PSScript > .\PVS_Inventory_V5.ps1 -PDF
+
 	Will use all Default values and save the document as a PDF file.
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\Company="Carl Webster"
 	$env:username = Administrator
@@ -240,8 +240,8 @@
 	Administrator for the User Name.
 	LocalHost for AdminAddress.
 .EXAMPLE
-	PS C:\PSScript > .\PVS_Inventory_V5.ps1 -Hardware 
-	
+	PS C:\PSScript > .\PVS_Inventory_V5.ps1 -Hardware
+
 	Will use all Default values and add additional information for each server about its hardware.
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\CompanyName="Carl Webster" or
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\Company="Carl Webster"
@@ -287,8 +287,8 @@
 		cwebster for User.
 		Script will prompt for the Domain and Password
 .EXAMPLE
-	PS C:\PSScript > .\PVS_Inventory_V5.ps1 -StartDate "01/01/2015" -EndDate "01/31/2015" 
-	
+	PS C:\PSScript > .\PVS_Inventory_V5.ps1 -StartDate "01/01/2015" -EndDate "01/31/2015"
+
 	Will use all Default values.
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\Company="Carl Webster"
 	$env:username = Administrator
@@ -300,8 +300,8 @@
 	LocalHost for AdminAddress.
 	Will return all Audit Trail entries from "01/01/2015" through "01/31/2015".
 .EXAMPLE
-	PS C:\PSScript > .\PVS_Inventory_V5.ps1 -StartDate "01/01/2015 10:00:00" -EndDate "01/31/2015 14:00:00" 
-	
+	PS C:\PSScript > .\PVS_Inventory_V5.ps1 -StartDate "01/01/2015 10:00:00" -EndDate "01/31/2015 14:00:00"
+
 	Will use all Default values.
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\Company="Carl Webster"
 	$env:username = Administrator
@@ -314,7 +314,7 @@
 	Will return all Audit Trail entries from 01/01/2015 10:100AM through 01/31/2015 2:00PM.
 .EXAMPLE
 	PS C:\PSScript > .\PVS_Inventory_V5.ps1 -Folder \\FileServer\ShareName
-	
+
 	Will use all default values.
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\CompanyName="Carl Webster" or
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\Company="Carl Webster"
@@ -323,11 +323,11 @@
 	Carl Webster for the Company Name.
 	Sideline for the Cover Page format.
 	Administrator for the User Name.
-	
+
 	Output file will be saved in the path \\FileServer\ShareName
 .EXAMPLE
 	PS C:\PSScript > .\PVS_Inventory_V5.ps1 -SmtpServer mail.domain.tld -From XDAdmin@domain.tld -To ITGroup@domain.tld -ComputerName DHCPServer01
-	
+
 	Will use all Default values.
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\CompanyName="Carl Webster" or
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\Company="Carl Webster"
@@ -336,14 +336,14 @@
 	Carl Webster for the Company Name.
 	Sideline for the Cover Page format.
 	Administrator for the User Name.
-	
+
 	Script will be run remotely against DHCP server DHCPServer01.
-	
+
 	Script will use the email server mail.domain.tld, sending from XDAdmin@domain.tld, sending to ITGroup@domain.tld.
 	If the current user's credentials are not valid to send email, the user will be prompted to enter valid credentials.
 .EXAMPLE
 	PS C:\PSScript > .\PVS_Inventory_V5.ps1 -SmtpServer smtp.office365.com -SmtpPort 587 -UseSSL -From Webster@CarlWebster.com -To ITGroup@CarlWebster.com
-	
+
 	Will use all Default values.
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\CompanyName="Carl Webster" or
 	HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo\Company="Carl Webster"
@@ -352,9 +352,9 @@
 	Carl Webster for the Company Name.
 	Sideline for the Cover Page format.
 	Administrator for the User Name.
-	
+
 	Script will be run remotely against DHCP server DHCPServer01.
-	
+
 	Script will use the email server smtp.office365.com on port 587 using SSL, sending from webster@carlwebster.com, sending to ITGroup@carlwebster.com.
 	If the current user's credentials are not valid to send email, the user will be prompted to enter valid credentials.
 .INPUTS
@@ -363,7 +363,7 @@
 	No objects are output from this script.  This script creates a Word or PDF document.
 .NOTES
 	NAME: PVS_Inventory_V5.ps1
-	VERSION: 5.12 
+	VERSION: 5.12
 	AUTHOR: Carl Webster, Sr. Solutions Architect at Choice Solutions
 	LASTEDIT: February 21, 2017
 #>
@@ -378,20 +378,20 @@
     Param(
         [ValidateSet('MSWord', 'PDF', 'Text', 'HTML', 'Object')]
         [String]$Output='MSWord',
-        
+
 		[ValidateNotNullOrEmpty()]
         [string]$ComputerName='LocalHost',
-        
+
 		[ValidateNotNullOrEmpty()]
         [string]$Folder,
-        
+
 		[ValidateNotNullOrEmpty()]
         [Alias("CN")]
         [string]$CompanyName,
-        
+
 		[ValidateNotNullOrEmpty()]
         [Alias("CP")]
-        [string]$CoverPage='Sideline', 
+        [string]$CoverPage='Sideline',
 
 		[ValidateNotNullOrEmpty()]
         [Alias("UN")]
@@ -415,43 +415,43 @@
 		[ValidateNotNullOrEmpty()]
         [parameter(ParameterSetName="SMTP",Mandatory=$True)]
         [string]$To,
-		
+
         [Switch]$Dev,
-        
+
         [Alias("SI")]
         [Switch]$ScriptInfo,
 
-        	[parameter(Mandatory=$False)] 
+        	[parameter(Mandatory=$False)]
 	    [Alias("HW")]
-	    [Switch]$Hardware=$False, 
+	    [Switch]$Hardware=$False,
 
-	    [parameter(Mandatory=$False)] 
+	    [parameter(Mandatory=$False)]
 	    [Alias("SD")]
 	    [Datetime]$StartDate = ((Get-Date -displayhint date).AddDays(-7)),
 
-	    [parameter(Mandatory=$False)] 
+	    [parameter(Mandatory=$False)]
 	    [Alias("ED")]
 	    [Datetime]$EndDate = (Get-Date -displayhint date),
-	
-	    [parameter(Mandatory=$False)] 
+
+	    [parameter(Mandatory=$False)]
 	    [Alias("ADT")]
 	    [Switch]$AddDateTime=$False,
-	
-	    [parameter(Mandatory=$False)] 
+
+	    [parameter(Mandatory=$False)]
 	    [Alias("AA")]
 	    [string]$AdminAddress="",
 
-	    [parameter(Mandatory=$False)] 
+	    [parameter(Mandatory=$False)]
 	    [string]$Domain="",
 
-	    [parameter(Mandatory=$False)] 
+	    [parameter(Mandatory=$False)]
 	    [string]$User="",
 
-	    [parameter(Mandatory=$False)] 
+	    [parameter(Mandatory=$False)]
 	    [string]$Password=""
-	
 
-	
+
+
 	)
 
     $MSWord = $False
@@ -491,7 +491,7 @@
 
 #endregion
 
-#region script change log	
+#region script change log
 #Carl Webster, CTP and Sr. Solutions Architect at Choice Solutions
 #webster@carlwebster.com
 #@carlwebster on Twitter
@@ -559,7 +559,7 @@
 #		7018 Set ListServerCustomPropertyAdd
 #		7019 Set ListUserGroupCustomProperty
 #		7020 Set ListUserGroupCustomPropertyDelete
-#		7021 Set ListUserGroupCustomPropertyAdd	
+#		7021 Set ListUserGroupCustomPropertyAdd
 #	Add write-cache type 6, Device RAM Disk, only because it is in the cmdlet's help text
 #	Fix issues with invalid variable names found by using the -Dev parameter
 #
@@ -843,13 +843,13 @@ If($MSWord -or $PDF)
 	#try and fix the issue with the $CompanyName variable
 	$Script:CoName = $CompanyName
 	Write-Verbose "$(Get-Date): CoName is $($Script:CoName)"
-	
-	#the following values were attained from 
+
+	#the following values were attained from
 	#http://groovy.codehaus.org/modules/scriptom/1.6.0/scriptom-office-2K3-tlb/apidocs/
 	#http://msdn.microsoft.com/en-us/library/office/aa211923(v=office.11).aspx
 	[int]$wdAlignPageNumberRight = 2
 	[long]$wdColorGray15 = 14277081
-	[long]$wdColorGray05 = 15987699 
+	[long]$wdColorGray05 = 15987699
 	[int]$wdMove = 0
 	[int]$wdSeekMainDocument = 0
 	[int]$wdSeekPrimaryFooter = 4
@@ -901,7 +901,7 @@ If($MSWord -or $PDF)
 	[int]$wdLineStyleSingle = 1
 
 	[int]$wdHeadingFormatTrue = -1
-	[int]$wdHeadingFormatFalse = 0 
+	[int]$wdHeadingFormatFalse = 0
 
 }
 
@@ -956,13 +956,13 @@ If($TEXT)
 Function GetComputerWMIInfo
 {
 	Param([string]$RemoteComputerName)
-	
-	# original work by Kees Baggerman, 
+
+	# original work by Kees Baggerman,
 	# Senior Technical Consultant @ Inter Access
 	# k.baggerman@myvirtualvision.com
 	# @kbaggerman on Twitter
 	# http://blog.myvirtualvision.com
-	# modified 1-May-2014 to work in trusted AD Forests and using different domain admin credentials	
+	# modified 1-May-2014 to work in trusted AD Forests and using different domain admin credentials
 	# modified 17-Aug-2016 to fix a few issues with Text and HTML output
 
 	#Get Computer info
@@ -983,19 +983,19 @@ Function GetComputerWMIInfo
 		WriteHTMLLine 3 0 "Computer Information: $($RemoteComputerName)"
 		WriteHTMLLine 4 0 "General Computer"
 	}
-	
+
 	[bool]$GotComputerItems = $True
-	
+
 	Try
 	{
 		$Results = Get-WmiObject -computername $RemoteComputerName win32_computersystem
 	}
-	
+
 	Catch
 	{
 		$Results = $Null
 	}
-	
+
 	If($? -and $Null -ne $Results)
 	{
 		$ComputerItems = $Results | Select Manufacturer, Model, Domain, `
@@ -1051,7 +1051,7 @@ Function GetComputerWMIInfo
 			WriteHTMLLine 0 2 "No results Returned for Computer information" "" $Null 0 $False $True
 		}
 	}
-	
+
 	#Get Disk info
 	Write-Verbose "$(Get-Date): `t`t`tDrive information"
 
@@ -1069,12 +1069,12 @@ Function GetComputerWMIInfo
 	}
 
 	[bool]$GotDrives = $True
-	
+
 	Try
 	{
 		$Results = Get-WmiObject -computername $RemoteComputerName Win32_LogicalDisk
 	}
-	
+
 	Catch
 	{
 		$Results = $Null
@@ -1082,8 +1082,8 @@ Function GetComputerWMIInfo
 
 	If($? -and $Null -ne $Results)
 	{
-		$drives = $Results | Select caption, @{N="drivesize"; E={[math]::round(($_.size / 1GB),0)}}, 
-		filesystem, @{N="drivefreespace"; E={[math]::round(($_.freespace / 1GB),0)}}, 
+		$drives = $Results | Select caption, @{N="drivesize"; E={[math]::round(($_.size / 1GB),0)}},
+		filesystem, @{N="drivefreespace"; E={[math]::round(($_.freespace / 1GB),0)}},
 		volumename, drivetype, volumedirty, volumeserialnumber
 		$Results = $Null
 		ForEach($drive in $drives)
@@ -1136,7 +1136,7 @@ Function GetComputerWMIInfo
 			WriteHTMLLine 0 2 "No results Returned for Drive information" "" $Null 0 $False $True
 		}
 	}
-	
+
 
 	#Get CPU's and stepping
 	Write-Verbose "$(Get-Date): `t`t`tProcessor information"
@@ -1155,12 +1155,12 @@ Function GetComputerWMIInfo
 	}
 
 	[bool]$GotProcessors = $True
-	
+
 	Try
 	{
 		$Results = Get-WmiObject -computername $RemoteComputerName win32_Processor
 	}
-	
+
 	Catch
 	{
 		$Results = $Null
@@ -1168,7 +1168,7 @@ Function GetComputerWMIInfo
 
 	If($? -and $Null -ne $Results)
 	{
-		$Processors = $Results | Select availability, name, description, maxclockspeed, 
+		$Processors = $Results | Select availability, name, description, maxclockspeed,
 		l2cachesize, l3cachesize, numberofcores, numberoflogicalprocessors
 		$Results = $Null
 		ForEach($processor in $processors)
@@ -1236,12 +1236,12 @@ Function GetComputerWMIInfo
 	}
 
 	[bool]$GotNics = $True
-	
+
 	Try
 	{
 		$Results = Get-WmiObject -computername $RemoteComputerName win32_networkadapterconfiguration
 	}
-	
+
 	Catch
 	{
 		$Results = $Null
@@ -1252,15 +1252,15 @@ Function GetComputerWMIInfo
 		$Nics = $Results | Where {$Null -ne $_.ipaddress}
 		$Results = $Null
 
-		If($Nics -eq $Null ) 
-		{ 
-			$GotNics = $False 
-		} 
-		Else 
-		{ 
-			$GotNics = !($Nics.__PROPERTY_COUNT -eq 0) 
-		} 
-	
+		If($Nics -eq $Null )
+		{
+			$GotNics = $False
+		}
+		Else
+		{
+			$GotNics = !($Nics.__PROPERTY_COUNT -eq 0)
+		}
+
 		If($GotNics)
 		{
 			ForEach($nic in $nics)
@@ -1269,12 +1269,12 @@ Function GetComputerWMIInfo
 				{
 					$ThisNic = Get-WmiObject -computername $RemoteComputerName win32_networkadapter | Where {$_.index -eq $nic.index}
 				}
-				
-				Catch 
+
+				Catch
 				{
 					$ThisNic = $Null
 				}
-				
+
 				If($? -and $Null -ne $ThisNic)
 				{
 					OutputNicItem $Nic $ThisNic
@@ -1326,7 +1326,7 @@ Function GetComputerWMIInfo
 					}
 				}
 			}
-		}	
+		}
 	}
 	ElseIf(!$?)
 	{
@@ -1374,7 +1374,7 @@ Function GetComputerWMIInfo
 			WriteHTMLLine 0 2 "No results Returned for NIC configuration information" "" $Null 0 $False $True
 		}
 	}
-	
+
 	If($MSWORD -or $PDF)
 	{
 		WriteWordLine 0 0 ""
@@ -1449,7 +1449,7 @@ Function OutputComputerItem
 Function OutputDriveItem
 {
 	Param([object]$Drive)
-	
+
 	$xDriveType = ""
 	Switch ($drive.drivetype)
 	{
@@ -1462,7 +1462,7 @@ Function OutputDriveItem
 		6	{$xDriveType = "RAM Disk"; Break}
 		Default {$xDriveType = "Unknown"; Break}
 	}
-	
+
 	$xVolumeDirty = ""
 	If(![String]::IsNullOrEmpty($drive.volumedirty))
 	{
@@ -1578,7 +1578,7 @@ Function OutputDriveItem
 Function OutputProcessorItem
 {
 	Param([object]$Processor)
-	
+
 	$xAvailability = ""
 	Switch ($processor.availability)
 	{
@@ -1702,7 +1702,7 @@ Function OutputProcessorItem
 Function OutputNicItem
 {
 	Param([object]$Nic, [object]$ThisNic)
-	
+
 	$powerMgmt = Get-WmiObject MSPower_DeviceEnable -Namespace root\wmi | where {$_.InstanceName -match [regex]::Escape($ThisNic.PNPDeviceID)}
 
 	If($? -and $Null -ne $powerMgmt)
@@ -1720,7 +1720,7 @@ Function OutputNicItem
 	{
         $PowerSaving = "N/A"
 	}
-	
+
 	$xAvailability = ""
 	Switch ($processor.availability)
 	{
@@ -1765,7 +1765,7 @@ Function OutputNicItem
 			$xnicdnsdomainsuffixsearchorder += "$($DNSDomain)"
 		}
 	}
-	
+
 	If($Null -ne $nic.dnsserversearchorder -and $nic.dnsserversearchorder.length -gt 0)
 	{
 		$nicdnsserversearchorder = $nic.dnsserversearchorder
@@ -1785,7 +1785,7 @@ Function OutputNicItem
 	{
 		$xdnsenabledforwinsresolution = "No"
 	}
-	
+
 	$xTcpipNetbiosOptions = ""
 	Switch ($nic.TcpipNetbiosOptions)
 	{
@@ -1794,7 +1794,7 @@ Function OutputNicItem
 		2	{$xTcpipNetbiosOptions = "Disable NetBIOS"; Break}
 		Default	{$xTcpipNetbiosOptions = "Unknown"; Break}
 	}
-	
+
 	$xwinsenablelmhostslookup = ""
 	If($nic.winsenablelmhostslookup)
 	{
@@ -2124,14 +2124,14 @@ Function SetWordHashTable
 	Param([string]$CultureCode)
 
 	#optimized by Michael B. SMith
-	
+
 	# DE and FR translations for Word 2010 by Vladimir Radojevic
 	# Vladimir.Radojevic@Commerzreal.com
 
 	# DA translations for Word 2010 by Thomas Daugaard
 	# Citrix Infrastructure Specialist at edgemo A/S
 
-	# CA translations by Javier Sanchez 
+	# CA translations by Javier Sanchez
 	# CEO & Founder 101 Consulting
 
 	#ca - Catalan
@@ -2146,7 +2146,7 @@ Function SetWordHashTable
 	#pt - Portuguese
 	#sv - Swedish
 	#zh - Chinese
-	
+
 	[string]$toc = $(
 		Switch ($CultureCode)
 		{
@@ -2178,7 +2178,7 @@ Function SetWordHashTable
 Function GetCulture
 {
 	Param([int]$WordValue)
-	
+
 	#codes obtained from http://support.microsoft.com/kb/221435
 	#http://msdn.microsoft.com/en-us/library/bb213877(v=office.12).aspx
 	$CatalanArray = 1027
@@ -2223,16 +2223,16 @@ Function GetCulture
 		{$SwedishArray -contains $_} {$CultureCode = "sv-"}
 		Default {$CultureCode = "en-"}
 	}
-	
+
 	Return $CultureCode
 }
 
 Function ValidateCoverPage
 {
 	Param([int]$xWordVersion, [string]$xCP, [string]$CultureCode)
-	
+
 	$xArray = ""
-	
+
 	Switch ($CultureCode)
 	{
 		'ca-'	{
@@ -2263,9 +2263,9 @@ Function ValidateCoverPage
 		'da-'	{
 				If($xWordVersion -eq $wdWord2016)
 				{
-					$xArray = ("Austin", "BevægElse", "Brusen", "Facet", "Filigran", 
-					"Gitter", "Integral", "Ion (lys)", "Ion (mørk)", 
-					"Retro", "Semafor", "Sidelinje", "Stribet", 
+					$xArray = ("Austin", "BevægElse", "Brusen", "Facet", "Filigran",
+					"Gitter", "Integral", "Ion (lys)", "Ion (mørk)",
+					"Retro", "Semafor", "Sidelinje", "Stribet",
 					"Udsnit (lys)", "Udsnit (mørk)", "Visningsmaster")
 				}
 				ElseIf($xWordVersion -eq $wdWord2013)
@@ -2287,10 +2287,10 @@ Function ValidateCoverPage
 		'de-'	{
 				If($xWordVersion -eq $wdWord2016)
 				{
-					$xArray = ("Austin", "Bewegung", "Facette", "Filigran", 
-					"Gebändert", "Integral", "Ion (dunkel)", "Ion (hell)", 
-					"Pfiff", "Randlinie", "Raster", "Rückblick", 
-					"Segment (dunkel)", "Segment (hell)", "Semaphor", 
+					$xArray = ("Austin", "Bewegung", "Facette", "Filigran",
+					"Gebändert", "Integral", "Ion (dunkel)", "Ion (hell)",
+					"Pfiff", "Randlinie", "Raster", "Rückblick",
+					"Segment (dunkel)", "Segment (hell)", "Semaphor",
 					"ViewMaster")
 				}
 				ElseIf($xWordVersion -eq $wdWord2013)
@@ -2328,9 +2328,9 @@ Function ValidateCoverPage
 		'es-'	{
 				If($xWordVersion -eq $wdWord2016)
 				{
-					$xArray = ("Austin", "Con bandas", "Cortar (oscuro)", "Cuadrícula", 
-					"Whisp", "Faceta", "Filigrana", "Integral", "Ion (claro)", 
-					"Ion (oscuro)", "Línea lateral", "Movimiento", "Retrospectiva", 
+					$xArray = ("Austin", "Con bandas", "Cortar (oscuro)", "Cuadrícula",
+					"Whisp", "Faceta", "Filigrana", "Integral", "Ion (claro)",
+					"Ion (oscuro)", "Línea lateral", "Movimiento", "Retrospectiva",
 					"Semáforo", "Slice (luz)", "Vista principal", "Whisp")
 				}
 				ElseIf($xWordVersion -eq $wdWord2013)
@@ -2376,16 +2376,16 @@ Function ValidateCoverPage
 		'fr-'	{
 				If($xWordVersion -eq $wdWord2013 -or $xWordVersion -eq $wdWord2016)
 				{
-					$xArray = ("À bandes", "Austin", "Facette", "Filigrane", 
-					"Guide", "Intégrale", "Ion (clair)", "Ion (foncé)", 
-					"Lignes latérales", "Quadrillage", "Rétrospective", "Secteur (clair)", 
+					$xArray = ("À bandes", "Austin", "Facette", "Filigrane",
+					"Guide", "Intégrale", "Ion (clair)", "Ion (foncé)",
+					"Lignes latérales", "Quadrillage", "Rétrospective", "Secteur (clair)",
 					"Secteur (foncé)", "Sémaphore", "ViewMaster", "Whisp")
 				}
 				ElseIf($xWordVersion -eq $wdWord2010)
 				{
-					$xArray = ("Alphabet", "Annuel", "Austère", "Austin", 
-					"Blocs empilés", "Classique", "Contraste", "Emplacements de bureau", 
-					"Exposition", "Guide", "Ligne latérale", "Moderne", 
+					$xArray = ("Alphabet", "Annuel", "Austère", "Austin",
+					"Blocs empilés", "Classique", "Contraste", "Emplacements de bureau",
+					"Exposition", "Guide", "Ligne latérale", "Moderne",
 					"Mosaïques", "Mots croisés", "Papier journal", "Perspective",
 					"Quadrillage", "Rayures fines", "Transcendant")
 				}
@@ -2430,7 +2430,7 @@ Function ValidateCoverPage
 				If($xWordVersion -eq $wdWord2013 -or $xWordVersion -eq $wdWord2016)
 				{
 					$xArray = ("Animação", "Austin", "Em Tiras", "Exibição Mestra",
-					"Faceta", "Fatia (Clara)", "Fatia (Escura)", "Filete", "Filigrana", 
+					"Faceta", "Fatia (Clara)", "Fatia (Escura)", "Filete", "Filigrana",
 					"Grade", "Integral", "Íon (Claro)", "Íon (Escuro)", "Linha Lateral",
 					"Retrospectiva", "Semáforo")
 				}
@@ -2485,7 +2485,7 @@ Function ValidateCoverPage
 					}
 				}
 	}
-	
+
 	If($xArray -contains $xCP)
 	{
 		$xArray = $Null
@@ -2509,7 +2509,7 @@ Function CheckWordPrereq
 
 	#find out our session (usually "1" except on TS/RDC or Citrix)
 	$SessionID = (Get-Process -PID $PID).SessionId
-	
+
 	#Find out if winword is running in our session
 	[bool]$wordrunning = ((Get-Process 'WinWord' -ea 0)|?{$_.SessionId -eq $SessionID}) -ne $Null
 	If($wordrunning)
@@ -2541,14 +2541,14 @@ Function ValidateCompanyName
 	}
 }
 
-Function _SetDocumentProperty 
+Function _SetDocumentProperty
 {
 	#jeff hicks
 	Param([object]$Properties,[string]$Name,[string]$Value)
 	#get the property object
-	$prop = $properties | ForEach { 
+	$prop = $properties | ForEach {
 		$propname=$_.GetType().InvokeMember("Name","GetProperty",$Null,$_,$Null)
-		If($propname -eq $Name) 
+		If($propname -eq $Name)
 		{
 			Return $_
 		}
@@ -2560,7 +2560,7 @@ Function _SetDocumentProperty
 
 Function FindWordDocumentEnd
 {
-	#return focus to main document    
+	#return focus to main document
 	$Script:Doc.ActiveWindow.ActivePane.view.SeekView = $wdSeekMainDocument
 	#move to the end of the current document
 	$Script:Selection.EndKey($wdStory,$wdMove) | Out-Null
@@ -2569,11 +2569,11 @@ Function FindWordDocumentEnd
 Function SetupWord
 {
 	Write-Verbose "$(Get-Date): Setting up Word"
-    
+
 	# Setup word for output
 	Write-Verbose "$(Get-Date): Create Word comObject."
 	$Script:Word = New-Object -comobject "Word.Application" -EA 0 4>$Null
-	
+
 	If(!$? -or $Null -eq $Script:Word)
 	{
 		Write-Warning "The Word object could not be created.  You may need to repair your Word installation."
@@ -2599,11 +2599,11 @@ Function SetupWord
 		AbortScript
 	}
 	Write-Verbose "$(Get-Date): Word language value is $($Script:WordLanguageValue)"
-	
+
 	$Script:WordCultureCode = GetCulture $Script:WordLanguageValue
-	
+
 	SetWordHashTable $Script:WordCultureCode
-	
+
 	[int]$Script:WordVersion = [int]$Script:Word.Version
 	If($Script:WordVersion -eq $wdWord2016)
 	{
@@ -2635,7 +2635,7 @@ Function SetupWord
 	{
 		Write-Verbose "$(Get-Date): Company name is blank.  Retrieve company name from registry."
 		$TmpName = ValidateCompanyName
-		
+
 		If([String]::IsNullOrEmpty($TmpName))
 		{
 			Write-Warning "`n`n`t`tCompany Name is blank so Cover Page will not show a Company Name."
@@ -2760,9 +2760,9 @@ Function SetupWord
 
 	Write-Verbose "$(Get-Date): Validate cover page $($CoverPage) for culture code $($Script:WordCultureCode)"
 	[bool]$ValidCP = $False
-	
+
 	$ValidCP = ValidateCoverPage $Script:WordVersion $CoverPage $Script:WordCultureCode
-	
+
 	If(!$ValidCP)
 	{
 		$ErrorActionPreference = $SaveEAPreference
@@ -2790,19 +2790,19 @@ Function SetupWord
 	Write-Verbose "$(Get-Date): Attempt to load cover page $($CoverPage)"
 	$part = $Null
 
-	$BuildingBlocksCollection | 
+	$BuildingBlocksCollection |
 	ForEach{
-		If ($_.BuildingBlockEntries.Item($CoverPage).Name -eq $CoverPage) 
+		If ($_.BuildingBlockEntries.Item($CoverPage).Name -eq $CoverPage)
 		{
 			$BuildingBlocks = $_
 		}
-	}        
+	}
 
 	If($Null -ne $BuildingBlocks)
 	{
 		$BuildingBlocksExist = $True
 
-		Try 
+		Try
 		{
 			$part = $BuildingBlocks.BuildingBlockEntries.Item($CoverPage)
 		}
@@ -2893,9 +2893,9 @@ Function SetupWord
 	$Script:Doc.ActiveWindow.ActivePane.view.SeekView = $wdSeekPrimaryFooter
 	#get the footer and format font
 	$footers = $Script:Doc.Sections.Last.Footers
-	ForEach ($footer in $footers) 
+	ForEach ($footer in $footers)
 	{
-		If($footer.exists) 
+		If($footer.exists)
 		{
 			$footer.range.Font.name = "Calibri"
 			$footer.range.Font.size = 8
@@ -2912,7 +2912,7 @@ Function SetupWord
 
 	FindWordDocumentEnd
 	Write-Verbose "$(Get-Date):"
-	#end of Jeff Hicks 
+	#end of Jeff Hicks
 }
 
 Function UpdateDocumentProperties
@@ -3008,23 +3008,23 @@ Function line
 		$Global:Output += $name + $value + $newline
 	}
 }
-	
+
 Function WriteWordLine
 #Function created by Ryan Revord
 #@rsrevord on Twitter
 #Function created to make output to Word easy in this script
 #updated 27-Mar-2015 to include font name, font size, italics and bold options
 {
-	Param([int]$style=0, 
-	[int]$tabs = 0, 
-	[string]$name = '', 
-	[string]$value = '', 
+	Param([int]$style=0,
+	[int]$tabs = 0,
+	[string]$name = '',
+	[string]$value = '',
 	[string]$fontName=$Null,
 	[int]$fontSize=0,
 	[bool]$italics=$False,
 	[bool]$boldface=$False,
 	[Switch]$nonewline)
-	
+
 	#Build output style
 	[string]$output = ""
 	Switch ($style)
@@ -3036,43 +3036,43 @@ Function WriteWordLine
 		4 {$Script:Selection.Style = $Script:MyHash.Word_Heading4; Break}
 		Default {$Script:Selection.Style = $Script:MyHash.Word_NoSpacing; Break}
 	}
-	
+
 	#build # of tabs
 	While($tabs -gt 0)
-	{ 
-		$output += "`t"; $tabs--; 
+	{
+		$output += "`t"; $tabs--;
 	}
- 
-	If(![String]::IsNullOrEmpty($fontName)) 
+
+	If(![String]::IsNullOrEmpty($fontName))
 	{
 		$Script:Selection.Font.name = $fontName
-	} 
+	}
 
-	If($fontSize -ne 0) 
+	If($fontSize -ne 0)
 	{
 		$Script:Selection.Font.size = $fontSize
-	} 
- 
-	If($italics -eq $True) 
+	}
+
+	If($italics -eq $True)
 	{
 		$Script:Selection.Font.Italic = $True
-	} 
- 
-	If($boldface -eq $True) 
+	}
+
+	If($boldface -eq $True)
 	{
 		$Script:Selection.Font.Bold = $True
-	} 
+	}
 
 	#output the rest of the parameters.
 	$output += $name + $value
 	$Script:Selection.TypeText($output)
- 
+
 	#test for new WriteWordLine 0.
 	If($nonewline)
 	{
 		# Do nothing.
-	} 
-	Else 
+	}
+	Else
 	{
 		$Script:Selection.TypeParagraph()
 	}
@@ -3117,17 +3117,17 @@ Function WriteWordLine
 
 	Writes a line omitting font and font size and setting both italics and bold options
 
-.EXAMPLE	
+.EXAMPLE
 	WriteHTMLLine 0 0 "This is a regular line of text in the default font in 10 point" "" $Null 2  # 10 point font
 
 	Writes a line using 10 point font
 
 .EXAMPLE
-	WriteHTMLLine 0 0 "This is a regular line of text in Courier New font" "" "Courier New" 0 
+	WriteHTMLLine 0 0 "This is a regular line of text in Courier New font" "" "Courier New" 0
 
 	Writes a line using Courier New Font and 0 font point size (default = 2 if set to 0)
 
-.EXAMPLE	
+.EXAMPLE
 	WriteHTMLLine 0 0 "This is a regular line of RED text indented 0 tab stops with the computer name as data in 10 point Courier New bold italics: " $env:computername "Courier New" 2 ($htmlbold -bor $htmlred -bor $htmlitalics)
 
 	Writes a line using Courier New Font with first and second string values to be used, also uses 10 point font with bold, italics and red color options set.
@@ -3145,31 +3145,31 @@ Function WriteWordLine
 		7 - 36 point
 	Any number larger than 7 defaults to 7
 
-	Style - Refers to the headers that are used with output and resemble the headers in word, 
-	HTML supports headers h1-h6 and h1-h4 are more commonly used.  Unlike word, H1 will not 
+	Style - Refers to the headers that are used with output and resemble the headers in word,
+	HTML supports headers h1-h6 and h1-h4 are more commonly used.  Unlike word, H1 will not
 	give you a blue colored font, you will have to set that yourself.
 
 	Colors and Bold/Italics Flags are:
 
-		htmlbold       
-		htmlitalics    
-		htmlred        
-		htmlcyan        
-		htmlblue       
-		htmldarkblue   
-		htmllightblue   
-		htmlpurple      
-		htmlyellow      
-		htmllime       
-		htmlmagenta     
-		htmlwhite       
-		htmlsilver      
-		htmlgray       
-		htmlolive       
-		htmlorange      
-		htmlmaroon      
-		htmlgreen       
-		htmlblack       
+		htmlbold
+		htmlitalics
+		htmlred
+		htmlcyan
+		htmlblue
+		htmldarkblue
+		htmllightblue
+		htmlpurple
+		htmlyellow
+		htmllime
+		htmlmagenta
+		htmlwhite
+		htmlsilver
+		htmlgray
+		htmlolive
+		htmlorange
+		htmlmaroon
+		htmlgreen
+		htmlblack
 #>
 
 Function WriteHTMLLine
@@ -3177,10 +3177,10 @@ Function WriteHTMLLine
 #Function created to make output to HTML easy in this script
 #headings fixed 12-Oct-2016 by Webster
 {
-	Param([int]$style=0, 
-	[int]$tabs = 0, 
-	[string]$name = '', 
-	[string]$value = '', 
+	Param([int]$style=0,
+	[int]$tabs = 0,
+	[string]$name = '',
+	[string]$value = '',
 	[string]$fontName="Calibri",
 	[int]$fontSize=2,
 	[int]$options=$htmlblack)
@@ -3190,8 +3190,8 @@ Function WriteHTMLLine
 	[string]$output = ""
 	[string]$HTMLStyle1 = ""
 	[string]$HTMLStyle2 = ""
-	
-	If([String]::IsNullOrEmpty($Name))	
+
+	If([String]::IsNullOrEmpty($Name))
 	{
 		#$HTMLBody = "<p></p>"
 		$HTMLBody = ""
@@ -3203,23 +3203,23 @@ Function WriteHTMLLine
 		#build # of tabs
 
 		While($tabs -gt 0)
-		{ 
-			$output += "&nbsp;&nbsp;&nbsp;&nbsp;"; $tabs--; 
+		{
+			$output += "&nbsp;&nbsp;&nbsp;&nbsp;"; $tabs--;
 		}
 
-		$HTMLFontName = $fontName		
+		$HTMLFontName = $fontName
 
 		$HTMLBody = ""
 
-		If($options -band $htmlitalics) 
+		If($options -band $htmlitalics)
 		{
 			$HTMLBody += "<i>"
-		} 
+		}
 
-		If($options -band $htmlbold) 
+		If($options -band $htmlbold)
 		{
 			$HTMLBody += "<b>"
-		} 
+		}
 
 		#output the rest of the parameters.
 		$output += $name + $value
@@ -3252,22 +3252,22 @@ Function WriteHTMLLine
 		{
 			$HTMLBody += "<font face='" + $HTMLFontName + "' " + "color='" + $color + "' size='"  + $fontsize + "'>"
 		}
-		
+
 		$HTMLBody += $HTMLStyle1 + $output
 
 		$HTMLBody += $HTMLStyle2 +  "</font>"
 
-		If($options -band $htmlitalics) 
+		If($options -band $htmlitalics)
 		{
 			$HTMLBody += "</i>"
-		} 
+		}
 
-		If($options -band $htmlbold) 
+		If($options -band $htmlbold)
 		{
 			$HTMLBody += "</b>"
-		} 
+		}
 	}
-	
+
 	#added by webster 12-oct-2016
 	#if a heading, don't add the <br />
 	#If($HTMLStyle1 -eq "")
@@ -3360,11 +3360,11 @@ Function AddHTMLTable
 		}
 		$htmlbody += "</tr>"
 	}
-	out-file -FilePath $Script:FileName1 -Append -InputObject $HTMLBody 4>$Null 
+	out-file -FilePath $Script:FileName1 -Append -InputObject $HTMLBody 4>$Null
 }
 
 #***********************************************************************************************************
-# FormatHTMLTable 
+# FormatHTMLTable
 # Created by Ken Avram
 # modified by Jake Rutski
 #***********************************************************************************************************
@@ -3448,25 +3448,25 @@ Function AddHTMLTable
 
 	Colors and Bold/Italics Flags are shown below:
 
-		htmlbold       
-		htmlitalics    
-		htmlred        
-		htmlcyan        
-		htmlblue       
-		htmldarkblue   
-		htmllightblue   
-		htmlpurple      
-		htmlyellow      
-		htmllime       
-		htmlmagenta     
-		htmlwhite       
-		htmlsilver      
-		htmlgray       
-		htmlolive       
-		htmlorange      
-		htmlmaroon      
-		htmlgreen       
-		htmlblack     
+		htmlbold
+		htmlitalics
+		htmlred
+		htmlcyan
+		htmlblue
+		htmldarkblue
+		htmllightblue
+		htmlpurple
+		htmlyellow
+		htmllime
+		htmlmagenta
+		htmlwhite
+		htmlsilver
+		htmlgray
+		htmlolive
+		htmlorange
+		htmlmaroon
+		htmlgreen
+		htmlblack
 
 #>
 
@@ -3583,8 +3583,8 @@ Function FormatHTMLTable
 	Else
 	{
 		$HTMLBody += "</table>"
-	}	
-	out-file -FilePath $Script:FileName1 -Append -InputObject $HTMLBody 4>$Null 
+	}
+	out-file -FilePath $Script:FileName1 -Append -InputObject $HTMLBody 4>$Null
 }
 #endregion
 
@@ -3758,19 +3758,19 @@ Function AddWordTable
 		[Parameter(ValueFromPipelineByPropertyName=$True)] [int] $Format = 0
 	)
 
-	Begin 
+	Begin
 	{
 		Write-Debug ("Using parameter set '{0}'" -f $PSCmdlet.ParameterSetName);
 		## Check if -Columns wasn't specified but -Headers were (saves some additional parameter sets!)
-		If(($Columns -eq $Null) -and ($Headers -ne $Null)) 
+		If(($Columns -eq $Null) -and ($Headers -ne $Null))
 		{
 			Write-Warning "No columns specified and therefore, specified headers will be ignored.";
 			$Columns = $Null;
 		}
-		ElseIf(($Columns -ne $Null) -and ($Headers -ne $Null)) 
+		ElseIf(($Columns -ne $Null) -and ($Headers -ne $Null))
 		{
 			## Check if number of specified -Columns matches number of specified -Headers
-			If($Columns.Length -ne $Headers.Length) 
+			If($Columns.Length -ne $Headers.Length)
 			{
 				Write-Error "The specified number of columns does not match the specified number of headers.";
 			}
@@ -3782,44 +3782,44 @@ Function AddWordTable
 		## Build the Word table data string to be converted to a range and then a table later.
 		[System.Text.StringBuilder] $WordRangeString = New-Object System.Text.StringBuilder;
 
-		Switch ($PSCmdlet.ParameterSetName) 
+		Switch ($PSCmdlet.ParameterSetName)
 		{
-			'CustomObject' 
+			'CustomObject'
 			{
-				If($Columns -eq $Null) 
+				If($Columns -eq $Null)
 				{
 					## Build the available columns from all availble PSCustomObject note properties
 					[string[]] $Columns = @();
 					## Add each NoteProperty name to the array
-					ForEach($Property in ($CustomObject | Get-Member -MemberType NoteProperty)) 
-					{ 
-						$Columns += $Property.Name; 
+					ForEach($Property in ($CustomObject | Get-Member -MemberType NoteProperty))
+					{
+						$Columns += $Property.Name;
 					}
 				}
 
 				## Add the table headers from -Headers or -Columns (except when in -List(view)
-				If(-not $List) 
+				If(-not $List)
 				{
 					Write-Debug ("$(Get-Date): `t`tBuilding table headers");
-					If($Headers -ne $Null) 
+					If($Headers -ne $Null)
 					{
                         [ref] $Null = $WordRangeString.AppendFormat("{0}`n", [string]::Join("`t", $Headers));
 					}
-					Else 
-					{ 
+					Else
+					{
                         [ref] $Null = $WordRangeString.AppendFormat("{0}`n", [string]::Join("`t", $Columns));
 					}
 				}
 
 				## Iterate through each PSCustomObject
 				Write-Debug ("$(Get-Date): `t`tBuilding table rows");
-				ForEach($Object in $CustomObject) 
+				ForEach($Object in $CustomObject)
 				{
 					$OrderedValues = @();
 					## Add each row item in the specified order
-					ForEach($Column in $Columns) 
-					{ 
-						$OrderedValues += $Object.$Column; 
+					ForEach($Column in $Columns)
+					{
+						$OrderedValues += $Object.$Column;
 					}
 					## Use the ordered list to add each column in specified order
 					[ref] $Null = $WordRangeString.AppendFormat("{0}`n", [string]::Join("`t", $OrderedValues));
@@ -3827,9 +3827,9 @@ Function AddWordTable
 				Write-Debug ("$(Get-Date): `t`t`tAdded '{0}' table rows" -f ($CustomObject.Count));
 			} ## end CustomObject
 
-			Default 
+			Default
 			{   ## Hashtable
-				If($Columns -eq $Null) 
+				If($Columns -eq $Null)
 				{
 					## Build the available columns from all available hashtable keys. Hopefully
 					## all Hashtables have the same keys (they should for a table).
@@ -3837,28 +3837,28 @@ Function AddWordTable
 				}
 
 				## Add the table headers from -Headers or -Columns (except when in -List(view)
-				If(-not $List) 
+				If(-not $List)
 				{
 					Write-Debug ("$(Get-Date): `t`tBuilding table headers");
-					If($Headers -ne $Null) 
-					{ 
+					If($Headers -ne $Null)
+					{
 						[ref] $Null = $WordRangeString.AppendFormat("{0}`n", [string]::Join("`t", $Headers));
 					}
-					Else 
+					Else
 					{
 						[ref] $Null = $WordRangeString.AppendFormat("{0}`n", [string]::Join("`t", $Columns));
 					}
 				}
-                
+
 				## Iterate through each Hashtable
 				Write-Debug ("$(Get-Date): `t`tBuilding table rows");
-				ForEach($Hash in $Hashtable) 
+				ForEach($Hash in $Hashtable)
 				{
 					$OrderedValues = @();
 					## Add each row item in the specified order
-					ForEach($Column in $Columns) 
-					{ 
-						$OrderedValues += $Hash.$Column; 
+					ForEach($Column in $Columns)
+					{
+						$OrderedValues += $Hash.$Column;
 					}
 					## Use the ordered list to add each column in specified order
 					[ref] $Null = $WordRangeString.AppendFormat("{0}`n", [string]::Join("`t", $OrderedValues));
@@ -3877,16 +3877,16 @@ Function AddWordTable
 		$ConvertToTableArguments = @{ Separator = [Microsoft.Office.Interop.Word.WdTableFieldSeparator]::wdSeparateByTabs; }
 
 		## Negative built-in styles are not supported by the ConvertToTable method
-		If($Format -ge 0) 
+		If($Format -ge 0)
 		{
 			$ConvertToTableArguments.Add("Format", $Format);
 			$ConvertToTableArguments.Add("ApplyBorders", $True);
 			$ConvertToTableArguments.Add("ApplyShading", $True);
 			$ConvertToTableArguments.Add("ApplyFont", $True);
 			$ConvertToTableArguments.Add("ApplyColor", $True);
-			If(!$List) 
-			{ 
-				$ConvertToTableArguments.Add("ApplyHeadingRows", $True); 
+			If(!$List)
+			{
+				$ConvertToTableArguments.Add("ApplyHeadingRows", $True);
 			}
 			$ConvertToTableArguments.Add("ApplyLastRow", $True);
 			$ConvertToTableArguments.Add("ApplyFirstColumn", $True);
@@ -3909,16 +3909,16 @@ Function AddWordTable
 		);
 
 		## Implement grid lines (will wipe out any existing formatting
-		If($Format -lt 0) 
+		If($Format -lt 0)
 		{
 			Write-Debug ("$(Get-Date): `t`tSetting table format");
 			$WordTable.Style = $Format;
 		}
 
 		## Set the table autofit behavior
-		If($AutoFit -ne -1) 
-		{ 
-			$WordTable.AutoFitBehavior($AutoFit); 
+		If($AutoFit -ne -1)
+		{
+			$WordTable.AutoFitBehavior($AutoFit);
 		}
 
 		If(!$List)
@@ -3927,17 +3927,17 @@ Function AddWordTable
 			$WordTable.Rows.First.Headingformat = $wdHeadingFormatTrue;
 		}
 
-		If(!$NoGridLines) 
+		If(!$NoGridLines)
 		{
 			$WordTable.Borders.InsideLineStyle = $wdLineStyleSingle;
 			$WordTable.Borders.OutsideLineStyle = $wdLineStyleSingle;
 		}
-		If($NoGridLines) 
+		If($NoGridLines)
 		{
 			$WordTable.Borders.InsideLineStyle = $wdLineStyleNone;
 			$WordTable.Borders.OutsideLineStyle = $wdLineStyleNone;
 		}
-		If($NoInternalGridLines) 
+		If($NoInternalGridLines)
 		{
 			$WordTable.Borders.InsideLineStyle = $wdLineStyleNone;
 			$WordTable.Borders.OutsideLineStyle = $wdLineStyleSingle;
@@ -3989,7 +3989,7 @@ Function AddWordTable
 	Note: the $Table.Cell(17,3) returns a single Word COM cells object.
 #>
 
-Function SetWordCellFormat 
+Function SetWordCellFormat
 {
 	[CmdletBinding(DefaultParameterSetName='Collection')]
 	Param (
@@ -4016,17 +4016,17 @@ Function SetWordCellFormat
 		[Switch] $Underline
 	)
 
-	Begin 
+	Begin
 	{
 		Write-Debug ("Using parameter set '{0}'." -f $PSCmdlet.ParameterSetName);
 	}
 
-	Process 
+	Process
 	{
-		Switch ($PSCmdlet.ParameterSetName) 
+		Switch ($PSCmdlet.ParameterSetName)
 		{
 			'Collection' {
-				ForEach($Cell in $Collection) 
+				ForEach($Cell in $Collection)
 				{
 					If($BackgroundColor -ne $null) { $Cell.Shading.BackgroundPatternColor = $BackgroundColor; }
 					If($Bold) { $Cell.Range.Font.Bold = $true; }
@@ -4038,7 +4038,7 @@ Function SetWordCellFormat
 					If($Solid) { $Cell.Shading.Texture = 0; } ## wdTextureNone
 				} # end foreach
 			} # end Collection
-			'Cell' 
+			'Cell'
 			{
 				If($Bold) { $Cell.Range.Font.Bold = $true; }
 				If($Italic) { $Cell.Range.Font.Italic = $true; }
@@ -4049,9 +4049,9 @@ Function SetWordCellFormat
 				If($BackgroundColor -ne $null) { $Cell.Shading.BackgroundPatternColor = $BackgroundColor; }
 				If($Solid) { $Cell.Shading.Texture = 0; } ## wdTextureNone
 			} # end Cell
-			'Hashtable' 
+			'Hashtable'
 			{
-				ForEach($Coordinate in $Coordinates) 
+				ForEach($Coordinate in $Coordinates)
 				{
 					$Cell = $Table.Cell($Coordinate.Row, $Coordinate.Column);
 					If($Bold) { $Cell.Range.Font.Bold = $true; }
@@ -4092,7 +4092,7 @@ Function SetWordCellFormat
 	background color to light orange (weColorLightOrange).
 #>
 
-Function SetWordTableAlternateRowColor 
+Function SetWordTableAlternateRowColor
 {
 	[CmdletBinding()]
 	Param (
@@ -4104,23 +4104,23 @@ Function SetWordTableAlternateRowColor
 		[Parameter(ValueFromPipelineByPropertyName=$true, Position=2)] [ValidateSet('First','Second')] [string] $Seed = 'First'
 	)
 
-	Process 
+	Process
 	{
 		$StartDateTime = Get-Date;
 		Write-Debug ("{0}: `t`tSetting alternate table row colors.." -f $StartDateTime);
 
 		## Determine the row seed (only really need to check for 'Second' and default to 'First' otherwise
-		If($Seed.ToLower() -eq 'second') 
-		{ 
-			$StartRowIndex = 2; 
+		If($Seed.ToLower() -eq 'second')
+		{
+			$StartRowIndex = 2;
 		}
-		Else 
-		{ 
-			$StartRowIndex = 1; 
+		Else
+		{
+			$StartRowIndex = 1;
 		}
 
-		For($AlternateRowIndex = $StartRowIndex; $AlternateRowIndex -lt $Table.Rows.Count; $AlternateRowIndex += 2) 
-		{ 
+		For($AlternateRowIndex = $StartRowIndex; $AlternateRowIndex -lt $Table.Rows.Count; $AlternateRowIndex += 2)
+		{
 			$Table.Rows.Item($AlternateRowIndex).Shading.BackgroundPatternColor = $BackgroundColor;
 		}
 
@@ -4137,14 +4137,14 @@ Function SendEmail
 {
 	Param([string]$Attachments)
 	Write-Verbose "$(Get-Date): Prepare to email"
-	
+
 	$emailAttachment = $Attachments
 	$emailSubject = $Script:Title
 	$emailBody = @"
 Hello, <br />
 <br />
 $Script:Title is attached.
-"@ 
+"@
 
 	If($Dev)
 	{
@@ -4187,13 +4187,13 @@ $Script:Title is attached.
 		{
 			Send-MailMessage -Attachments $emailAttachment -Body $emailBody -BodyAsHtml -From $From `
 			-Port $SmtpPort -SmtpServer $SmtpServer -Subject $emailSubject -To $To `
-			-UseSSL -credential $emailCredentials *>$Null 
+			-UseSSL -credential $emailCredentials *>$Null
 		}
 		Else
 		{
 			Send-MailMessage -Attachments $emailAttachment -Body $emailBody -BodyAsHtml -From $From `
 			-Port $SmtpPort -SmtpServer $SmtpServer -Subject $emailSubject -To $To `
-			-credential $emailCredentials *>$Null 
+			-credential $emailCredentials *>$Null
 		}
 
 		$e = $error[0]
@@ -4205,13 +4205,13 @@ $Script:Title is attached.
 		Else
 		{
 			Write-Verbose "$(Get-Date): Email was not sent:"
-			Write-Warning "$(Get-Date): Exception: $e.Exception" 
+			Write-Warning "$(Get-Date): Exception: $e.Exception"
 		}
 	}
 	Else
 	{
 		Write-Verbose "$(Get-Date): Email was not sent:"
-		Write-Warning "$(Get-Date): Exception: $e.Exception" 
+		Write-Warning "$(Get-Date): Exception: $e.Exception"
 	}
 }
 #endregion
@@ -4391,7 +4391,7 @@ Function SaveandCloseDocumentandShutdownWord
 
 					#find out our session (usually "1" except on TS/RDC or Citrix)
 					$SessionID = (Get-Process -PID $PID).SessionId
-					
+
 					#Find out if winword is running in our session
 					$wordprocess = ((Get-Process 'WinWord' -ea 0)|?{$_.SessionId -eq $SessionID}).Id
 					If($wordprocess -gt 0)
@@ -4412,9 +4412,9 @@ Function SaveandCloseDocumentandShutdownWord
 		Remove-Variable -Name word -Scope Global 4>$Null
 	}
 	$SaveFormat = $Null
-	[gc]::collect() 
+	[gc]::collect()
 	[gc]::WaitForPendingFinalizers()
-	
+
 	#is the winword process still running? kill it
 
 	#find out our session (usually "1" except on TS/RDC or Citrix)
@@ -4518,7 +4518,7 @@ Function SetFileName1andFileName2
 Function TestComputerName
 {
 	Param([string]$Cname)
-	If(![String]::IsNullOrEmpty($CName)) 
+	If(![String]::IsNullOrEmpty($CName))
 	{
 		#get computer name
 		#first test to make sure the computer is reachable
@@ -4551,7 +4551,7 @@ Function TestComputerName
 	If($ip)
 	{
 		$Result = [System.Net.Dns]::gethostentry($ip)
-		
+
 		If($? -and $Result -ne $Null)
 		{
 			$CName = $Result.HostName
@@ -4654,7 +4654,7 @@ Function AbortScript
 			Remove-Variable -Name word -Scope Global
 		}
 	}
-	[gc]::collect() 
+	[gc]::collect()
 	[gc]::WaitForPendingFinalizers()
 	Write-Verbose "$(Get-Date): Script has been aborted"
 	$ErrorActionPreference = $SaveEAPreference
@@ -4682,7 +4682,7 @@ Function OutputWarning
 Function SecondsToMinutes
 {
 	Param($xVal)
-	
+
 	If([int]$xVal -lt 60)
 	{
 		Return "0:$xVal"
@@ -4743,9 +4743,9 @@ Function Check-NeededPSSnapins
 }
 
 Function OutputViewMembers
-{		 
+{
 	Param([object] $Members)
-	
+
 	If($MSWord -or $PDF)
 	{
 		## Create an array of hashtables to store our admins
@@ -4797,7 +4797,7 @@ Function OutputViewMembers
 	{
 		$columnHeaders = @(
 		'Name',($htmlsilver -bor $htmlbold))
-		
+
 		$msg = ""
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
@@ -4898,9 +4898,9 @@ Function DeviceStatus
 			FindWordDocumentEnd
 			$Table = $Null
 			WriteWordLine 0 0 ""
-			
+
 			WriteWordLine 4 0 "Logging"
-			
+
 			[System.Collections.Hashtable[]] $ScriptInformation = @()
 			$ScriptInformation += @{ Data = "Logging level"; Value = $xDevicelogLevel; }
 
@@ -4934,10 +4934,10 @@ Function DeviceStatus
 			Line 3 "Local write cache disk`t:$($xDevice.localWriteCacheDiskSize)GB"
 			Line 3 "Boot mode`t`t:" $xDevicebdmBoot
 			Line 3 $xDevicelicenseType
-			
+
 			Line 2 "Logging"
 			Line 3 "Logging level`t`t: " $xDevicelogLevel
-			
+
 			Line 0 ""
 		}
 		ElseIf($HTML)
@@ -4958,7 +4958,7 @@ Function DeviceStatus
 			$msg = ""
 			FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 			WriteHTMLLine 0 0 " "
-			
+
 			WriteHTMLLine 4 0 "Logging"
 			$rowdata = @()
 			$columnHeaders = @("Logging level",($htmlsilver -bor $htmlbold),$xDevicelogLevel,$htmlwhite)
@@ -4969,21 +4969,21 @@ Function DeviceStatus
 		}
         ElseIf($Object)
         {
-            $script:objectvDiskStatus = $xDevice | Select-Object -Property @{n='Ip';e={$_.Ip.IpAddressToString}}, 
-                                                                            ServerName, 
-                                                                            @{n='ServerIpConnection';e={$_.ServerIpConnection.IpAddressToString}}, 
-                                                                            ServerPortConnection, 
-                                                                            Status, 
-                                                                            DiskLocatorName, 
-                                                                            DiskVersion, 
-                                                                            DiskFileName, 
+            $script:objectvDiskStatus = $xDevice | Select-Object -Property @{n='Ip';e={$_.Ip.IpAddressToString}},
+                                                                            ServerName,
+                                                                            @{n='ServerIpConnection';e={$_.ServerIpConnection.IpAddressToString}},
+                                                                            ServerPortConnection,
+                                                                            Status,
+                                                                            DiskLocatorName,
+                                                                            DiskVersion,
+                                                                            DiskFileName,
                                                                             DiskVersionAccess,
                                                                             LocalWriteCacheDiskSize,
                                                                             BdmBoot,
                                                                             LicenseType
 
             $script:objectvDiskLoglevel = $xDevice | Select-Object -Property Loglevel
-                                                                            
+
         }
 	}
 }
@@ -5072,7 +5072,7 @@ Function ProcessScriptSetup
 	{
 		Write-Verbose "$(Get-Date): PVS PSSnapin loaded"
 	}
-	
+
 	#setup remoting if $AdminAddress is not empty
 	[bool]$Script:Remoting = $False
 	If(![System.String]::IsNullOrEmpty($AdminAddress))
@@ -5095,19 +5095,19 @@ Function ProcessScriptSetup
 			Write-Host "This is an elevated PowerShell session." -Foreground White
 			Write-Host "" -Foreground White
 		}
-		
+
 		Write-Verbose "$(Get-Date): Creating connection to PVS Server $($AdminAddress)"
 		If(![System.String]::IsNullOrEmpty($User))
 		{
 			If([System.String]::IsNullOrEmpty($Domain))
 			{
 				$Domain = Read-Host "Domain name for user is required.  Enter Domain name for user"
-			}		
+			}
 
 			If([System.String]::IsNullOrEmpty($Password))
 			{
 				$Password = Read-Host "Password for user is required.  Enter password for user"
-			}		
+			}
 			Set-PVSConnection -server $AdminAddress -user $User -domain $Domain -password $Password -EA 0 4>$Null
 		}
 		Else
@@ -5126,7 +5126,7 @@ Function ProcessScriptSetup
 				Write-Verbose "$(Get-Date): Domain=$($Domain)"
 			}
 		}
-		Else 
+		Else
 		{
 			$ErrorActionPreference = $SaveEAPreference
 			Write-Warning "Remoting could not be setup to server $($AdminAddress)"
@@ -5188,11 +5188,11 @@ Function ProcessScriptSetup
 	If($? -and $Results -ne $Null)
 	{
 		#build PVS version values
-		$Script:version = $Results.MapiVersion 
-		$Script:PVSVersion = $Version.SubString(0,1)	
-		$Script:PVSFullVersion = $Version.SubString(0,4)	
-	} 
-	Else 
+		$Script:version = $Results.MapiVersion
+		$Script:PVSVersion = $Version.SubString(0,1)
+		$Script:PVSFullVersion = $Version.SubString(0,4)
+	}
+	Else
 	{
 		$ErrorActionPreference = $SaveEAPreference
 		Write-Warning "PVS version information could not be retrieved"
@@ -5208,7 +5208,7 @@ Function OutputAuditTrail
 {
 
 	Param([object] $Audits, [string] $Level)
-		
+
 	If($Audits -ne $Null)
 	{
 		If($MSWord -or $PDF)
@@ -5244,7 +5244,7 @@ Function OutputAuditTrail
 		{
 			$rowdata = @()
 		}
-		
+
 		ForEach($Audit in $Audits)
 		{
 			$xAction = ""
@@ -5393,7 +5393,7 @@ Function OutputAuditTrail
 				7018 { $xAction = "Set ListServerCustomPropertyAdd"; Break }
 				7019 { $xAction = "Set ListUserGroupCustomProperty"; Break }
 				7020 { $xAction = "Set ListUserGroupCustomPropertyDelete"; Break }
-				7021 { $xAction = "Set ListUserGroupCustomPropertyAdd"; Break }				
+				7021 { $xAction = "Set ListUserGroupCustomPropertyAdd"; Break }
 				Default {$xAction = "Unknown"; Break }
 			}
 			$xType = ""
@@ -5493,7 +5493,7 @@ Function OutputAuditTrail
 			'User',($htmlsilver -bor $htmlbold),
 			'Domain',($htmlsilver -bor $htmlbold),
 			'Path',($htmlsilver -bor $htmlbold))
-			
+
 			$msg = ""
 			FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 			WriteHTMLLine 0 0 " "
@@ -5506,7 +5506,7 @@ Function OutputauthGroups
 	Param([object] $authGroups,
     [HashTable]$ObjectRoot
     )
-	
+
 	If($MSWord -or $PDF)
 	{
 		## Create an array of hashtables to store our admins
@@ -5540,7 +5540,7 @@ Function OutputauthGroups
 			}
 		}
 	}
-	
+
 	If($MSword -or $PDF)
 	{
 		## Add the table to the document, using the hashtable (-Alt is short for -AlternateBackgroundColor!)
@@ -5561,7 +5561,7 @@ Function OutputauthGroups
 	{
 		$columnHeaders = @(
 		'Name',($htmlsilver -bor $htmlbold))
-		
+
 		$msg = ""
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
@@ -5572,7 +5572,7 @@ Function OutputauthGroups
 Function OutputauthGroupUsages
 {
 	Param([object] $authGroups)
-	
+
 	If($MSWord -or $PDF)
 	{
 		## Create an array of hashtables to store our admins
@@ -5606,7 +5606,7 @@ Function OutputauthGroupUsages
 			}
 		}
 	}
-	
+
 	If($MSword -or $PDF)
 	{
 		## Add the table to the document, using the hashtable (-Alt is short for -AlternateBackgroundColor!)
@@ -5627,7 +5627,7 @@ Function OutputauthGroupUsages
 	{
 		$columnHeaders = @(
 		'Name',($htmlsilver -bor $htmlbold))
-		
+
 		$msg = ""
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
@@ -5649,7 +5649,7 @@ Function ProcessFarm
 	{
 		[string]$FarmName = $farm.FarmName
 		[string]$Script:Title="Inventory Report for the $($FarmName) Farm"
-		SetFileName1andFileName2 "$($FarmName)"	
+		SetFileName1andFileName2 "$($FarmName)"
 		If($farm.autoAddEnabled)
 		{
 			$Script:FarmAutoAddEnabled = $True
@@ -5673,9 +5673,9 @@ Function ProcessFarm
 Function OutputFarm
 {
 	Param([object]$farm)
-	
+
 	Write-Verbose "$(Get-Date): Processing PVS Farm Information"
-	
+
 	$xautoAddEnabled = "No"
 	If($farm.autoAddEnabled)
 	{
@@ -5689,7 +5689,7 @@ Function OutputFarm
 	$xofflineDatabaseSupportEnabled = "No"
 	If($farm.offlineDatabaseSupportEnabled)
 	{
-		$xofflineDatabaseSupportEnabled = "Yes"	
+		$xofflineDatabaseSupportEnabled = "Yes"
 	}
 	$xautomaticMergeEnabled = "No"
 	If($farm.automaticMergeEnabled)
@@ -5763,7 +5763,7 @@ Function OutputFarm
 		{
 			$rowdata += @(,('Description',($htmlsilver -bor $htmlbold),$farm.description,$htmlwhite))
 		}
-		
+
 		$msg = ""
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
@@ -5771,7 +5771,7 @@ Function OutputFarm
 
 	#security tab
 	Write-Verbose "$(Get-Date): `tProcessing Security Tab"
-	
+
 	If($MSWord -or $PDF)
 	{
 		WriteWordLine 2 0 "Security"
@@ -5788,7 +5788,7 @@ Function OutputFarm
 		WriteHTMLLine 3 0 "Groups with Farm Administrator access:"
 	}
 
-	
+
 	#build security tab values
 	$authgroups = Get-PVSAuthGroup -Farm -EA 0 4>$Null
 
@@ -5843,7 +5843,7 @@ Function OutputFarm
 
 	#licensing tab
 	Write-Verbose "$(Get-Date): `tProcessing Licensing Tab"
-	
+
 	If($farm.licenseTradeUp -eq "1")
 	{
 		$DatacenterLicense = "Yes"
@@ -5852,7 +5852,7 @@ Function OutputFarm
 	{
 		$DatacenterLicense = "No"
 	}
-	
+
 	If($MSword -or $PDF)
 	{
 		WriteWordLine 2 0 "Licensing"
@@ -5907,7 +5907,7 @@ Function OutputFarm
 	If($Script:PVSFullVersion -ge "7.11")
 	{
 		$ceipResults = Get-PVSCeipData -EA 0 4>$Null
-		
+
 		If($? -and $Null -ne $ceipResults)
 		{
 			$CEIP = "Yes"
@@ -6096,7 +6096,7 @@ Function OutputFarm
 			$rowdata += @(,('Failover Partner Instance',($htmlsilver -bor $htmlbold),$farm.failoverPartnerInstanceName,$htmlwhite))
 		}
 		$rowdata += @(,('',($htmlsilver -bor $htmlbold),$xadGroupsEnabled,$htmlwhite))
-		
+
 		$msg = ""
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
@@ -6106,9 +6106,9 @@ Function OutputFarm
 	If($Script:PVSFullVersion -ge "7.11")
 	{
 		Write-Verbose "$(Get-Date): `tProcessing Problem Report"
-		
+
 		$Results = Get-PVSCisData -EA 0 4>$Null
-		
+
 		If($? -and $Null -ne $Results)
 		{
 			$CISUserName = $Results.UserName
@@ -6117,7 +6117,7 @@ Function OutputFarm
 		{
 			$CISUserName = "Not configured"
 		}
-		
+
 		If($MSWord -or $PDF)
 		{
 			WriteWordLine 2 0 "Problem Report"
@@ -6151,7 +6151,7 @@ Function OutputFarm
 			WriteHTMLLine 3 0 "Configure your My Citrix credentials in order to submit problem reports"
 			$rowdata = @()
 			$columnHeaders = @("My Citrix Username",($htmlsilver -bor $htmlbold),$CISUserName,$htmlwhite)
-			
+
 			$msg = ""
 			FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 			WriteHTMLLine 0 0 " "
@@ -6176,12 +6176,12 @@ Function OutputFarm
             ProblemReport = $results | Select-Object -Property UserName
         }
     }
-	
+
 	#add Audit Trail
 	Write-Verbose "$(Get-Date): `tProcessing Audit Trail"
-	
+
 	$Audits = Get-PVSAuditTrail -BeginDate $StartDate -EndDate $EndDate -EA 0 4>$Null
-	
+
 	If($? -and $Audits -ne $Null)
 	{
 		OutputAuditTrail $Audits "Farm"
@@ -6206,7 +6206,7 @@ Function ProcessSites
 	#build site values
 	Write-Verbose "$(Get-Date): Processing Sites"
 	$PVSSites = Get-PVSSite -EA 0 4>$Null
-	
+
 	If($? -and $PVSSites -ne $Null)
 	{
 		ForEach($PVSSite in $PVSSites)
@@ -6230,7 +6230,7 @@ Function OutputSite
 {
 	Param([object] $PVSSite)
 	Write-Verbose "$(Get-Date): `tProcessing Site $($PVSSite.siteName)"
-	
+
 	$Script:AdvancedItems1 = @()
 	$Script:AdvancedItems2 = @()
 
@@ -6380,12 +6380,12 @@ Function OutputSite
 		$rowdata = @()
 		$columnHeaders = @("Add new devices to this collection",($htmlsilver -bor $htmlbold),$xAutoAdd,$htmlwhite)
 		$rowdata += @(,('Seconds between vDisk inventory scans',($htmlsilver -bor $htmlbold),$PVSSite.InventoryFilePollingInterval,$htmlwhite))
-		
+
 		$msg = ""
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
 	}
-	
+
 	#vDisk Update
 	Write-Verbose "$(Get-Date): `t`tProcessing vDisk Update Tab"
 	If($PVSSite.enableDiskUpdate)
@@ -6428,7 +6428,7 @@ Function OutputSite
 		}
         ElseIf($Object)
         {
-             $objectvDiskUpdate = $PVSSite | Select-Object enableDiskUpdate diskUpdateServerName 
+             $objectvDiskUpdate = $PVSSite | Select-Object enableDiskUpdate diskUpdateServerName
         }
 	}
 	Else
@@ -6471,7 +6471,7 @@ Function OutputSite
 	#process all servers in site
 	Write-Verbose "$(Get-Date): `t`tProcessing Servers in Site $($PVSSite.siteName)"
 	$Servers = Get-PVSServer -SiteName $PVSSite.SiteName -EA 0 4>$Null
-	
+
 	If($? -and $Servers -ne $Null)
 	{
 		OutputServers $Servers
@@ -6487,7 +6487,7 @@ Function OutputSite
 		OutputWarning $txt
 	}
 
-	#the properties for the servers have been processed. 
+	#the properties for the servers have been processed.
 	#now to process the stuff available via a right-click on each server
 
 	#Configure Bootstrap is first
@@ -6574,15 +6574,15 @@ Function OutputSite
 					    Write-Verbose "$(Get-Date): `t`t`t`t`t`tProcessing General Tab"
 					    If($MSWord -or $PDF)
 					    {
-						    WriteWordLine 0 0 "General"	
+						    WriteWordLine 0 0 "General"
 					    }
 					    ElseIf($Text)
 					    {
-						    Line 1 "General"	
+						    Line 1 "General"
 					    }
 					    ElseIf($HTML)
 					    {
-						    WriteHTMLLine 0 0 "General"	
+						    WriteHTMLLine 0 0 "General"
 					    }
 
 
@@ -6613,10 +6613,10 @@ Function OutputSite
 								{
 									$Gateway = "Use settings from DHCP"
 								}
-								$WordTableRowHash = @{ 
-								IPAddress = $ServerBootstrap.bootserver1_Ip; 
-								Port = $ServerBootstrap.bootserver1_Port; 
-								SubnetMask = $Netmask; 
+								$WordTableRowHash = @{
+								IPAddress = $ServerBootstrap.bootserver1_Ip;
+								Port = $ServerBootstrap.bootserver1_Port;
+								SubnetMask = $Netmask;
 								Gateway = $Gateway;}
 
 								## Add the hash to the array
@@ -6644,10 +6644,10 @@ Function OutputSite
 								{
 									$Gateway = "Use settings from DHCP"
 								}
-								$WordTableRowHash = @{ 
-								IPAddress = $ServerBootstrap.bootserver2_Ip; 
-								Port = $ServerBootstrap.bootserver2_Port; 
-								SubnetMask = $Netmask; 
+								$WordTableRowHash = @{
+								IPAddress = $ServerBootstrap.bootserver2_Ip;
+								Port = $ServerBootstrap.bootserver2_Port;
+								SubnetMask = $Netmask;
 								Gateway = $Gateway;}
 
 								## Add the hash to the array
@@ -6675,10 +6675,10 @@ Function OutputSite
 								{
 									$Gateway = "Use settings from DHCP"
 								}
-								$WordTableRowHash = @{ 
-								IPAddress = $ServerBootstrap.bootserver3_Ip; 
-								Port = $ServerBootstrap.bootserver3_Port; 
-								SubnetMask = $Netmask; 
+								$WordTableRowHash = @{
+								IPAddress = $ServerBootstrap.bootserver3_Ip;
+								Port = $ServerBootstrap.bootserver3_Port;
+								SubnetMask = $Netmask;
 								Gateway = $Gateway;}
 
 								## Add the hash to the array
@@ -6706,10 +6706,10 @@ Function OutputSite
 								{
 									$Gateway = "Use settings from DHCP"
 								}
-								$WordTableRowHash = @{ 
-								IPAddress = $ServerBootstrap.bootserver4_Ip; 
-								Port = $ServerBootstrap.bootserver4_Port; 
-								SubnetMask = $Netmask; 
+								$WordTableRowHash = @{
+								IPAddress = $ServerBootstrap.bootserver4_Ip;
+								Port = $ServerBootstrap.bootserver4_Port;
+								SubnetMask = $Netmask;
 								Gateway = $Gateway;}
 
 								## Add the hash to the array
@@ -6939,7 +6939,7 @@ Function OutputSite
 							'Port',($htmlsilver -bor $htmlbold),
 							'Subnet Mask',($htmlsilver -bor $htmlbold),
 							'Gateway',($htmlsilver -bor $htmlbold))
-							
+
 							$msg = ""
 							FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 							WriteHTMLLine 0 0 " "
@@ -6969,7 +6969,7 @@ Function OutputSite
 
 
 						Write-Verbose "$(Get-Date): `t`t`t`t`t`tProcessing Options Tab"
-						
+
 						If($ServerBootstrap.verboseMode)
 						{
 							$verboseMode = "Yes"
@@ -7051,7 +7051,7 @@ Function OutputSite
 							$rowdata += @(,('Timeouts',($htmlsilver -bor $htmlbold),"",$htmlwhite))
 							$rowdata += @(,('     Login polling timeout',($htmlsilver -bor $htmlbold),"$($ServerBootstrap.pollingTimeout) (milliseconds)",$htmlwhite))
 							$rowdata += @(,('     Login general timeout',($htmlsilver -bor $htmlbold),"$($ServerBootstrap.generalTimeout) (milliseconds)",$htmlwhite))
-							
+
 							$msg = ""
 							FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 							WriteHTMLLine 0 0 " "
@@ -7061,10 +7061,10 @@ Function OutputSite
                             $objectBootstrapOptions = $ServerBootstrap | Select-Object -Property verboseMode, InterruptSafeMode, PaeMode, BootFromHdOnFail, RecoveryTime, PollingTimeout, GeneralTimeout
                         }
 					}
-                    
+
                     if($object)
                     {
-                        $script:objectServerBootstrap = [pscustomobject]@{ 
+                        $script:objectServerBootstrap = [pscustomobject]@{
                             $server.ServerName = [pscustomobject]@{
                                 General = $script:objectBootstrapGeneral
                                 Options = $objectBootstrapOptions
@@ -7095,7 +7095,7 @@ Function OutputSite
 		{
 			Write-Verbose "$(Get-Date): `t`t`t`tServer $($server.servername) is offline"
 		}
-	}		
+	}
 
 	#process all vDisks in site
 	Write-Verbose "$(Get-Date): `t`tProcessing all vDisks in site"
@@ -7113,7 +7113,7 @@ Function OutputSite
 	{
 		WriteHTMLLine 2 0 "vDisk Pool"
 	}
-	
+
 	If($? -and $Disks -ne $Null)
 	{
 		ForEach($Disk in $Disks)
@@ -7314,7 +7314,7 @@ Function OutputSite
 				{
 					$rowdata += @(,('Cached secrets cleanup disabled',($htmlsilver -bor $htmlbold),$CachedSecretsCleanup,$htmlwhite))
 				}
-				
+
 				$msg = ""
 				FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 				WriteHTMLLine 0 0 " "
@@ -7322,7 +7322,7 @@ Function OutputSite
             ElseIf($Object){
                 $objectDiskGeneral = $Disk | Select-Object -Property SiteName, StoreName, DiskLocatorName, DiskSize, vhdBlockSize, WriteCacheType, MenuText, AdPasswordEnabled, PrinterManagementEnabled, ClearCacheDisabled
             }
-			
+
 			Write-Verbose "$(Get-Date): `t`t`t`tProcessing Identification Tab"
 			If($MSWord -or $PDF)
 			{
@@ -7519,7 +7519,7 @@ Function OutputSite
 						$rowdata += @(,('Hardware target',($htmlsilver -bor $htmlbold),$Disk.hardwareTarget,$htmlwhite))
 					}
 				}
-				
+
 				$msg = ""
 				FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 				WriteHTMLLine 0 0 " "
@@ -7561,7 +7561,7 @@ Function OutputSite
 				WriteHTMLLine 0 0 "Microsoft Volume Licensing"
 				$rowdata = @()
 				$columnHeaders = @("Microsoft license type",($htmlsilver -bor $htmlbold),$licenseMode,$htmlwhite)
-				
+
 				$msg = ""
 				FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 				WriteHTMLLine 0 0 " "
@@ -7672,7 +7672,7 @@ Function OutputSite
 				$rowdata += @(,('Minor #',($htmlsilver -bor $htmlbold),$Disk.minorRelease,$htmlwhite))
 				$rowdata += @(,('Build #',($htmlsilver -bor $htmlbold),$Disk.build,$htmlwhite))
 				$rowdata += @(,('Serial #',($htmlsilver -bor $htmlbold),$Disk.serialNumber,$htmlwhite))
-				
+
 				$msg = ""
 				FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 				WriteHTMLLine 0 0 " "
@@ -7681,7 +7681,7 @@ Function OutputSite
             {
                 $objectDiskAuto = $disk | Select-Object -Property AutoUpdateEnabled, ActivationDateEnabled, ActiveDate, Class, ImageType, MajorRelease, MinorRelease, Build, Serial
             }
-			
+
 			#process Versions menu
 			#get versions info
 			#thanks to the PVS Product team for their help in understanding the Versions information
@@ -7723,7 +7723,7 @@ Function OutputSite
 						$BootOverride = $False
 					}
 				}
-				
+
 				$tmp = ""
 				If($BootOverride)
 				{
@@ -7747,7 +7747,7 @@ Function OutputSite
 				{
 					$rowdata = @()
 				}
-				
+
 				ForEach($DiskVersion in $DiskVersions)
 				{
 					Write-Verbose "$(Get-Date): `t`t`t`tProcessing vDisk Version $($DiskVersion.version)"
@@ -7939,7 +7939,7 @@ Function OutputSite
 						$rowdata += @(,('Is Pending',($htmlsilver -bor $htmlbold),$isPending,$htmlwhite))
 						$rowdata += @(,('Replication Status',($htmlsilver -bor $htmlbold),$goodInventoryStatus,$htmlwhite))
 						$rowdata += @(,('Disk Filename',($htmlsilver -bor $htmlbold),$DiskVersion.diskFileName,$htmlwhite))
-				
+
 						$msg = "Boot production devices from version: $($tmp)"
 						FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 						WriteHTMLLine 0 0 " "
@@ -7950,8 +7950,8 @@ Function OutputSite
                     }
                     if($Object)
                     {
-                        $objectVersionToAdd = @{ 
-                            "Version$($DiskVersion.version)" = $objectDiskVersion                           
+                        $objectVersionToAdd = @{
+                            "Version$($DiskVersion.version)" = $objectDiskVersion
                         }
                         $script:objectDiskVersions += $objectVersionToAdd
                     }
@@ -7966,7 +7966,7 @@ Function OutputSite
 			{
 				$txt = "Unable to retrieve Disk version information"
 				OutputWarning $txt
-			}			
+			}
 
 			#process vDisk Load Balancing Menu
 			Write-Verbose "$(Get-Date): `t`t`tProcessing vDisk Load Balancing Menu"
@@ -8054,7 +8054,7 @@ Function OutputSite
 						$rowdata += @(,('Trigger Percent',($htmlsilver -bor $htmlbold),"$($Disk.rebalanceTriggerPercent)",$htmlwhite))
 					}
 				}
-				
+
 				$msg = ""
 				FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 				WriteHTMLLine 0 0 " "
@@ -8067,9 +8067,9 @@ Function OutputSite
             #Create object to add disk  stuff too
             if($object)
             {
-                $objectToAdd = [pscutomobject]@{
-                    Name = $Disk.Name 
-                    Properties = [pscutomobject]@{
+                $objectToAdd = [pscustomobject]@{
+                    Name = $Disk.Name
+                    Properties = [pscustomobject]@{
                         General = $objectDiskGeneral
                         Identification = $objectDiskIdentification
                         MicrosoftVolumeLicensing = $objectDiskVolumeLic
@@ -8106,9 +8106,9 @@ Function OutputSite
 	{
 		WriteHTMLLine 2 0 "vDisk Update Management"
 	}
-	
+
 	$Tasks = Get-PvsUpdateTask -siteName $PVSSite.SiteName -EA 0 4>$Null
-	
+
 	If($? -and $Tasks -ne $Null)
 	{
 		If($MSWORD -or $PDF)
@@ -8123,7 +8123,7 @@ Function OutputSite
 		{
 			WriteHTMLLine 0 1 "vDisks"
 		}
-		
+
 		#process all the Update Managed vDisks for this site
 		Write-Verbose "$(Get-Date): `t`t`tProcessing all Update Managed vDisks for this site"
 		$ManagedvDisks = Get-PvsdiskUpdateDevice -siteName $PVSSite.SiteName -EA 0 4>$Null
@@ -8203,7 +8203,7 @@ Function OutputSite
                 {
                     $objectvDiskGeneral = $ManagedvDisk | Select-Object -Property StoreName, DisklocatorName, VirtualHostingPoolName, DeviceName, DeviceMac, Port
                 }
-								
+
 				Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing Personality Tab"
 				#process all personality strings for this device
 				$PersonalityStrings = Get-PvsDevicePersonality -Object $ManagedvDisk -EA 0 4>$Null
@@ -8268,10 +8268,10 @@ Function OutputSite
                             }
                             $script:objectvDiskPersonality += $objectPersonalityToAdd
                         }
-                        
+
                     }
 				}
-				
+
 				Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing Status Tab"
 				If($MSWord -or $PDF)
 				{
@@ -8290,7 +8290,7 @@ Function OutputSite
 
                 if($Object)
                 {
-                    
+
                     $objectvDiskToAdd = @{
                         "$($ManagedvDisk.storeName)`\$($ManagedvDisk.disklocatorName)" = [ordered]@{
                             General = $objectvDiskGeneral
@@ -8315,7 +8315,7 @@ Function OutputSite
 			$txt = "Unable to retrieve Managed vDisks"
 			OutputWarning $txt
 		}
-		
+
 		If($Tasks -ne $Null)
 		{
 			Write-Verbose "$(Get-Date): `t`t`tProcessing all Update Managed Tasks for this site"
@@ -8331,7 +8331,7 @@ Function OutputSite
 				{
 					$xTaskEnabled = "Yes"
 				}
-				
+
 				Switch ($Task.recurrence)
 				{
 					0 {$xTaskRecurrence = "None"; Break}
@@ -8465,7 +8465,7 @@ Function OutputSite
                 {
                     $ObjectTaskGeneral = $Task | Select-Object -Property UpdateTaskName, Description, Enableddescription
                 }
-				
+
 				Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing Schedule Tab"
 				If($MSWord -or $PDF)
 				{
@@ -8575,9 +8575,9 @@ Function OutputSite
                 {
                     $objectTaskSchedule = $Task | Select-Object -Property Recurrence, DayMask
                 }
-				
+
 				Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing vDisks Tab"
-				
+
 				If($MSWORD -or $PDF)
 				{
 					WriteWordLine 0 2 "vDisks"
@@ -8590,7 +8590,7 @@ Function OutputSite
 				{
 					WriteHTMLLine 0 2 "vDisks"
 				}
-				
+
 				$vDisks = Get-PvsDiskUpdateDevice -deviceId $ManagedvDisk.deviceId -EA 0 4>$Null
 				If($? -and $vDisks -ne $Null)
 				{
@@ -8655,10 +8655,10 @@ Function OutputSite
                                 "$($vDisk.storeName)`\$($vDisk.diskLocatorName)" = $vDisk | Select-Object -Property StoreName, DiskLocatorName, VirtualHostingPoolName, DeviceName
                             }
                         }
-                        
+
                         if($Object)
                         {
-                            
+
                             $script:objectTaskvDisk += $objectTaskvDiskToAdd
                         }
 					} #ForEach($vDisk in $vDisks)
@@ -8673,7 +8673,7 @@ Function OutputSite
 					$txt = "Unable to retrieve Disk Update Devices"
 					OutputWarning $txt
 				}
-				
+
 				Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing ESD Tab"
 				If($MSWord -or $PDF)
 				{
@@ -8717,7 +8717,7 @@ Function OutputSite
                 {
                     $objectTaskEsd = $Task | Select-Object -Property EsdType
                 }
-				
+
 				Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing Scripts Tab"
 				If(![String]::IsNullOrEmpty($Task.preUpdateScript) -or ![String]::IsNullOrEmpty($Task.preVmScript) -or ![String]::IsNullOrEmpty($Task.postVmScript) -or ![String]::IsNullOrEmpty($Task.postUpdateScript))
 				{
@@ -8777,7 +8777,7 @@ Function OutputSite
                         $objectTaskScripts = $Task | Select-Object -Property PreUpdateScript, PreVmScript, PostVmScript, PostUpdateScript
                     }
 				}
-				
+
 				Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing Access Tab"
 				If($MSWord -or $PDF)
 				{
@@ -8849,7 +8849,7 @@ Function OutputSite
 		$txt = "Unable to retrieve Update Tasks"
 		OutputWarning $txt
 	}
-    
+
     #Construct vDisk Update Management Object
     if($Object)
     {
@@ -8919,7 +8919,7 @@ Function OutputSite
 				$rowdata = @()
 				$columnHeaders = @("Name",($htmlsilver -bor $htmlbold),$Collection.collectionName,$htmlwhite)
 				$rowdata += @(,('Description',($htmlsilver -bor $htmlbold),$Collection.description,$htmlwhite))
-				
+
 				$msg = ""
 				FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 				WriteHTMLLine 0 0 " "
@@ -8946,7 +8946,7 @@ Function OutputSite
 
             If($Object)
             {
-                $objectCollectionSecurity = Get-PvsAuthGroup -CollectionId $Collection.CollectionId | Select-Object Role, Name  
+                $objectCollectionSecurity = Get-PvsAuthGroup -CollectionId $Collection.CollectionId | Select-Object Role, Name
             }
 
 			If($? -and $AuthGroups -ne $Null)
@@ -9000,7 +9000,7 @@ Function OutputSite
 				{
 					WriteHTMLLine 3 0 "Groups with 'Device Operator' access:"
 				}
-				
+
 				$tmpAuthGroups = @()
 				ForEach($AuthGroup in $AuthGroups)
 				{
@@ -9035,7 +9035,7 @@ Function OutputSite
 				$txt = "Unable to retrieve Authorized Groups for $($Collection.collectionName)"
 				OutputWarning $txt
 			}
-			
+
             #Collection Auto-Add tab
 			Write-Verbose "$(Get-Date): `t`t`t`tProcessing Auto-Add Tab"
 			If($MSWord -or $PDF)
@@ -9118,7 +9118,7 @@ Function OutputSite
 					$rowdata += @(,('     Zero fill',($htmlsilver -bor $htmlbold),$autoAddZeroFill,$htmlwhite))
 					$rowdata += @(,('     Suffix',($htmlsilver -bor $htmlbold),$Collection.autoAddSuffix,$htmlwhite))
 					$rowdata += @(,('     Last incremental #',($htmlsilver -bor $htmlbold),$Collection.lastAutoAddDeviceNumber,$htmlwhite))
-					
+
 					$msg = ""
 					FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 					WriteHTMLLine 0 0 " "
@@ -9143,7 +9143,7 @@ Function OutputSite
 			#for each collection, process each device
 			Write-Verbose "$(Get-Date): `t`t`tProcessing each collection process for each device"
 			$Devices = Get-PvsDeviceInfo -collectionId $Collection.collectionId -EA 0 4>$Null
-			
+
 			If($? -and $Devices -ne $Null)
 			{
 				ForEach($Device in $Devices)
@@ -9230,7 +9230,7 @@ Function OutputSite
 
 						$ScriptInformation += @{ Data = "MAC"; Value = $Device.deviceMac; }
 						$ScriptInformation += @{ Data = "Port"; Value = $Device.port; }
-						
+
 						If($Device.type -ne "3")
 						{
 							$ScriptInformation += @{ Data = "Class"; Value = $Device.className; }
@@ -9246,7 +9246,7 @@ Function OutputSite
 						{
 							$ScriptInformation += @{ Data = "Configured for XenServer vDisk caching"; Value = " "; }
 						}
-						
+
 						$Table = AddWordTable -Hashtable $ScriptInformation `
 						-Columns Data,Value `
 						-List `
@@ -9275,7 +9275,7 @@ Function OutputSite
 
 						Line 3 "MAC`t`t`t: " $Device.deviceMac
 						Line 3 "Port`t`t`t: " $Device.port
-						
+
 						If($Device.type -ne 3)
 						{
 							Line 3 "Class`t`t`t: " $Device.className
@@ -9307,7 +9307,7 @@ Function OutputSite
 
 						$rowdata += @(,('MAC',($htmlsilver -bor $htmlbold),$Device.deviceMac,$htmlwhite))
 						$rowdata += @(,('Port',($htmlsilver -bor $htmlbold),$Device.port,$htmlwhite))
-						
+
 						If($Device.type -ne "3")
 						{
 							$rowdata += @(,('Class',($htmlsilver -bor $htmlbold),$Device.className,$htmlwhite))
@@ -9323,12 +9323,12 @@ Function OutputSite
 						{
 							$rowdata += @(,('Configured for XenServer vDisk caching',($htmlsilver -bor $htmlbold),"",$htmlwhite))
 						}
-					
+
 						$msg = ""
 						FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 						WriteHTMLLine 0 0 " "
 					}
-					
+
 					Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing vDisks Tab"
 					If($MSWord -or $PDF)
 					{
@@ -9406,7 +9406,7 @@ Function OutputSite
 									$rowdata += @(,('',($htmlsilver -bor $htmlbold),$tmp,$htmlwhite))
 								}
 							}
-					
+
 							$msg = ""
 							FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 							WriteHTMLLine 0 0 " "
@@ -9422,7 +9422,7 @@ Function OutputSite
 						$txt = "Unable to retrieve vDisks"
 						OutputWarning $txt
 					}
-					
+
 					If($MSWord -or $PDF)
 					{
 						[System.Collections.Hashtable[]] $ScriptInformation = @()
@@ -9525,7 +9525,7 @@ Function OutputSite
 								}
 							}
 						}
-					
+
 						$msg = ""
 						FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 						WriteHTMLLine 0 0 " "
@@ -9535,13 +9535,13 @@ Function OutputSite
                         Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing all bootstrap files for this $($Device.deviceName)"
 						$Bootstraps = Get-PvsDeviceBootstrap -deviceName $Device.deviceName -EA 0 4>$Null
                     }
-					
+
 					Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing Authentication Tab"
 					If($MSWord -or $PDF)
 					{
 						WriteWordLine 4 0 "Authentication"
 						[System.Collections.Hashtable[]] $ScriptInformation = @()
-						
+
 						$ScriptInformation += @{ Data = "Type of authentication to use for this device"; Value = $DeviceAuthentication; }
 						If($DeviceAuthentication -eq "Username and password")
 						{
@@ -9589,7 +9589,7 @@ Function OutputSite
 						FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 						WriteHTMLLine 0 0 " "
 					}
-					
+
 					Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing Personality Tab"
 					#process all personality strings for this device
 					$PersonalityStrings = Get-PvsDevicePersonality -deviceName $Device.deviceName -EA 0 4>$Null
@@ -9647,7 +9647,7 @@ Function OutputSite
 							}
 						}
 					}
-					
+
 					If($MSWord -or $PDF)
 					{
 						WriteWordLine 4 0 "Status"
@@ -9698,13 +9698,13 @@ Function OutputSite
 	{
 		$txt = "Unable to retrieve Device Collections"
 		OutputWarning $txt
-	}	
+	}
 #>
 
 	#process all site views in site
 	Write-Verbose "$(Get-Date): `t`tProcessing all site views in site"
 	$SiteViews = Get-PVSSiteView -SiteName $PVSSite.siteName -EA 0 4>$Null
-	
+
 	If($? -and $SiteViews -ne $Null)
 	{
 		If($MSWord -or $PDF)
@@ -9719,7 +9719,7 @@ Function OutputSite
 		{
 			WriteHTMLLine 2 0 "Site Views"
 		}
-		
+
 		ForEach($SiteView in $SiteViews)
 		{
 			Write-Verbose "$(Get-Date): `t`t`tProcessing Site View $($SiteView.siteViewName)"
@@ -9772,14 +9772,14 @@ Function OutputSite
 				{
 					$rowdata += @(,('Description',($htmlsilver -bor $htmlbold),$SiteView.description,$htmlwhite))
 				}
-				
+
 				$msg = ""
 				FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 				WriteHTMLLine 0 0 " "
 			}
-			
+
 			Write-Verbose "$(Get-Date): `t`t`t`tProcessing Members Tab"
-			
+
 			If($MSWord -or $PDF)
 			{
 				WriteWordLine 4 0 "Members"
@@ -9792,7 +9792,7 @@ Function OutputSite
 			{
 				WriteHTMLLine 4 0 "Members"
 			}
-			
+
 			#process each target device contained in the site view
 			$Members = Get-PVSDevice -SiteViewId $SiteView.siteViewId -EA 0 4>$Null
 			If($? -and $Members -ne $Null)
@@ -9821,7 +9821,7 @@ Function OutputSite
 		$txt = "Unable to retrieve Site Views"
 		OutputWarning $txt
 	}
-	
+
 	#process all virtual hosts for this site
 	Write-Verbose "$(Get-Date): `t`t`tProcessing virtual hosts"
 	$vHosts = Get-PvsVirtualHostingPool -siteName $PVSSite.SiteName -EA 0 4>$Null
@@ -9875,7 +9875,7 @@ Function OutputSite
 					$ScriptInformation += @{ Data = "Description"; Value = $vHost.description; }
 				}
 				$ScriptInformation += @{ Data = "Host"; Value = $vHost.server; }
-				
+
 				If($vHostType -eq "Citrix XenServer")
 				{
 					$ScriptInformation += @{ Data = "Port"; Value = $vHost.Port; }
@@ -9888,7 +9888,7 @@ Function OutputSite
 				{
 					$ScriptInformation += @{ Data = "Datacenter"; Value = $vHost.Datacenter; }
 				}
-				
+
 				$Table = AddWordTable -Hashtable $ScriptInformation `
 				-Columns Data,Value `
 				-List `
@@ -9903,7 +9903,7 @@ Function OutputSite
 				FindWordDocumentEnd
 				$Table = $Null
 				WriteWordLine 0 0 ""
-				
+
 				Write-Verbose "$(Get-Date): Processing vDisk Update Tab"
 				WriteWordLine 4 0 "vDisk Update"
 				[System.Collections.Hashtable[]] $ScriptInformation = @()
@@ -9948,7 +9948,7 @@ Function OutputSite
 				{
 					Line 3 "Datacenter`t: " $vHost.Datacenter
 				}
-				
+
 				Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing vDisk Update Tab"
 				Line 2 "vDisk Update"
 				Line 3 "Update limit`t: " $vHost.updateLimit
@@ -9981,17 +9981,17 @@ Function OutputSite
 				{
 					$rowdata += @(,('Datacenter',($htmlsilver -bor $htmlbold),$vHost.Datacenter,$htmlwhite))
 				}
-				
+
 				$msg = ""
 				FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 				WriteHTMLLine 0 0 " "
-				
+
 				Write-Verbose "$(Get-Date): Processing vDisk Update Tab"
 				WriteHTMLLine 4 0 "vDisk Update"
 				$columnHeaders = @("Update limit",($htmlsilver -bor $htmlbold),$vHost.updateLimit,$htmlwhite)
 				$rowdata += @(,('Update timeout',($htmlsilver -bor $htmlbold),"$($vHost.updateTimeout) minutes",$htmlwhite))
 				$rowdata += @(,('Shutdown timeout',($htmlsilver -bor $htmlbold),"$($vHost.shutdownTimeout) minutes",$htmlwhite))
-				
+
 				$msg = ""
 				FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 				WriteHTMLLine 0 0 " "
@@ -10040,11 +10040,11 @@ Function OutputSite
 
     #Add current site to return object
     $script:objectSites  += $objectCurrentSite
-	
+
 	#add Audit Trail
 	Write-Verbose "$(Get-Date): `t`t`tProcessing Audit Trail"
 	$Audits = Get-PVSAuditTrail -SiteName $PVSSite.siteName -BeginDate $StartDate -EndDate $EndDate -EA 0 4>$Null
-	
+
 	If($? -and $Audits -ne $Null)
 	{
 		OutputAuditTrail $Audits "Site"
@@ -10064,7 +10064,7 @@ Function OutputSite
 Function OutputServers
 {
 	Param([object] $Servers)
-	
+
 	If($MSWord -or $PDF)
 	{
 		$selection.InsertNewPage()
@@ -10095,7 +10095,7 @@ Function OutputServers
 		{
 			$xeventLoggingEnabled = "No"
 		}
-		
+
 		$StreamingIPs = @()
 		ForEach($ip in $Server.ip)
 		{
@@ -10179,12 +10179,12 @@ Function OutputServers
 			}
 			$rowdata += @(,('Power Rating',($htmlsilver -bor $htmlbold),$Server.powerRating,$htmlwhite))
 			$rowdata += @(,("Log events to the server's Windows Event Log",($htmlsilver -bor $htmlbold),$xeventLoggingEnabled,$htmlwhite))
-			
+
 			$msg = ""
 			FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 			WriteHTMLLine 0 0 " "
 		}
-			
+
 		Write-Verbose "$(Get-Date): `t`t`t`tProcessing Network Tab"
 		If($MSWord -or $PDF)
 		{
@@ -10259,7 +10259,7 @@ Function OutputServers
 			FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 			WriteHTMLLine 0 0 " "
 		}
-			
+
 		Write-Verbose "$(Get-Date): `t`t`t`tProcessing Stores Tab"
 		#process all stores for this server
 		Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing Stores for server"
@@ -10285,7 +10285,7 @@ Function OutputServers
 			ForEach($store in $stores)
 			{
 				Write-Verbose "$(Get-Date): `t`t`t`t`t`tProcessing Store $($store.storename)"
-				
+
 				$StorePath = ""
 				If($store.path.length -gt 0)
 				{
@@ -10295,7 +10295,7 @@ Function OutputServers
 				{
 					$StorePath = "<Using the Default path from the store>"
 				}
-				
+
 				$WriteCachePaths = @()
 				ForEach($WCPath in $store.cachePath)
 				{
@@ -10305,7 +10305,7 @@ Function OutputServers
 				{
 					$WriteCachePaths += "<Using the Default path from the store>"
 				}
-				
+
 				If($MSWord -or $PDF)
 				{
 					[System.Collections.Hashtable[]] $ScriptInformation = @()
@@ -10448,11 +10448,11 @@ Function OutputServers
 			WriteHTMLLine 0 0 " "
 		}
 
-		
+
 		If($Script:PVSFullVersion -ge "7.11")
 		{
 			Write-Verbose "$(Get-Date): `t`t`t`tProcessing Problem Report Tab"
-			
+
 			If($Server.LastBugReportStatus -eq "")
 			{
                 if($Server.LastBugReportAttempt)
@@ -10472,7 +10472,7 @@ Function OutputServers
 				$CISSummary = $Server.LastBugReportSummary
 				$CISStatus = "$($Server.LastBugReportStatus): $($Server.LastBugReportResult)"
 			}
-			
+
 			If($MSWord -or $PDF)
 			{
 				WriteWordLine 0 0 "Problem Report"
@@ -10521,11 +10521,11 @@ Function OutputServers
             }
 		}
 		#create array for appendix A
-		
+
 		Write-Verbose "$(Get-Date): `t`t`t`t`tGather Advanced server info for Appendix A and B"
 		$obj1 = New-Object -TypeName PSObject
 		$obj2 = New-Object -TypeName PSObject
-		
+
 		$obj1 | Add-Member -MemberType NoteProperty -Name ServerName              -Value $Server.serverName
 		$obj1 | Add-Member -MemberType NoteProperty -Name ThreadsPerPort          -Value $Server.threadsPerPort
 		$obj1 | Add-Member -MemberType NoteProperty -Name BuffersPerThread        -Value $Server.buffersPerThread
@@ -10542,10 +10542,10 @@ Function OutputServers
 		$obj2 | Add-Member -MemberType NoteProperty -Name MaxBootDevicesAllowed   -Value $Server.maxBootDevicesAllowed
 		$obj2 | Add-Member -MemberType NoteProperty -Name vDiskCreatePacing       -Value $Server.vDiskCreatePacing
 		$obj2 | Add-Member -MemberType NoteProperty -Name LicenseTimeout          -Value $Server.licenseTimeout
-		
+
 		$Script:AdvancedItems1 +=  $obj1
 		$Script:AdvancedItems2 +=  $obj2
-		
+
 		#advanced button at the bottom
 		Write-Verbose "$(Get-Date): `t`t`t`tProcessing Server Advanced button"
 		Write-Verbose "$(Get-Date): `t`t`t`t`tProcessing Server Tab"
@@ -10748,7 +10748,7 @@ Function OutputServers
         }
         $script:objectServers += $ServerHashtoAdd
         $ServerHashtoAdd = @()
-		
+
 		If($Hardware)
 		{
 			If(Test-Connection -ComputerName $server.servername -quiet -EA 0)
@@ -10765,7 +10765,7 @@ Function ProcessFarmViews
 {
 	#process the farm views now
 	Write-Verbose "$(Get-Date): Processing all PVS Farm Views"
-	
+
 	If($MSWord -or $PDF)
 	{
 		$selection.InsertNewPage()
@@ -10779,9 +10779,9 @@ Function ProcessFarmViews
 	{
 		WriteHTMLLine 1 0 "Farm Views"
 	}
-	
+
 	$FarmViews = Get-PVSFarmView -EA 0 4>$Null
-	
+
 	If($? -and $FarmViews -ne $Null)
 	{
 		ForEach($FarmView in $FarmViews)
@@ -10804,7 +10804,7 @@ Function ProcessFarmViews
 Function OutputFarmView
 {
 	Param([object] $FarmView)
-	
+
 	Write-Verbose "$(Get-Date): `tProcessing Farm View $($FarmView.farmViewName)"
 	Write-Verbose "$(Get-Date): `t`tProcessing General Tab"
 	If($MSWord -or $PDF)
@@ -10860,7 +10860,7 @@ Function OutputFarmView
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
 	}
-	
+
 	Write-Verbose "$(Get-Date): `t`tProcessing Members Tab"
 	If($MSWord -or $PDF)
 	{
@@ -10915,7 +10915,7 @@ Function ProcessStores
 		{
 			WriteHTMLLine 1 0 "Stores Properties"
 		}
-		
+
 		ForEach($Store in $Stores)
 		{
 			OutputStore $Store
@@ -11001,16 +11001,16 @@ Function OutputStore
 			$rowdata += @(,('Description',($htmlsilver -bor $htmlbold),$Store.description,$htmlwhite))
 		}
 		$rowdata += @(,('Store owner',($htmlsilver -bor $htmlbold),$xStoreOwner,$htmlwhite))
-		
+
 		$msg = ""
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
 	}
-	
+
 	Write-Verbose "$(Get-Date): `t`tProcessing Servers Tab"
 	#find the servers (and the site) that serve this store
 	$Servers = Get-PVSServer -EA 0 4>$Null
-	
+
 	If($? -and $Servers -ne $Null)
 	{
 		$StoreSite = ""
@@ -11024,7 +11024,7 @@ Function OutputStore
 				$StoreSite = $Server.siteName
 				$StoreServers +=  $Server.serverName
 			}
-		}	
+		}
 	}
 	ElseIf($? -and $Servers -eq $Null)
 	{
@@ -11036,7 +11036,7 @@ Function OutputStore
 		$txt = "Unable to retrieve Servers"
 		OutputWarning $txt
 	}
-	
+
 	If($MSWord -or $PDF)
 	{
 		WriteWordLine 0 0 "Servers"
@@ -11052,7 +11052,7 @@ Function OutputStore
 				$ScriptInformation += @{ Data = ""; Value = $StoreServer; }
 			}
 		}
-		
+
 		$Table = AddWordTable -Hashtable $ScriptInformation `
 		-Columns Data,Value `
 		-List `
@@ -11098,7 +11098,7 @@ Function OutputStore
 				$rowdata += @(,('',($htmlsilver -bor $htmlbold),$StoreServer,$htmlwhite))
 			}
 		}
-		
+
 		$msg = ""
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
@@ -11120,7 +11120,7 @@ Function OutputStore
 				$cnt++
 				If($cnt -gt 0)
 				{
-					$ScriptInformation += @{ Data = ""; Value = $WCPath; }	
+					$ScriptInformation += @{ Data = ""; Value = $WCPath; }
 				}
 			}
 		}
@@ -11153,7 +11153,7 @@ Function OutputStore
 			$WCPaths = $Store.cachePath
 			ForEach($WCPath in $WCPaths)
 			{
-				Line 3 $WCPaths		
+				Line 3 $WCPaths
 			}
 		}
 		Else
@@ -11176,7 +11176,7 @@ Function OutputStore
 				$cnt++
 				If($cnt -gt 0)
 				{
-					$ScriptInformation += @{ Data = ""; Value = $WCPath; }	
+					$ScriptInformation += @{ Data = ""; Value = $WCPath; }
 				}
 			}
 		}
@@ -11184,7 +11184,7 @@ Function OutputStore
 		{
 			$rowdata += @(,('Default write-cache paths',($htmlsilver -bor $htmlbold),"none",$htmlwhite))
 		}
-		
+
 		$msg = ""
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
@@ -11249,15 +11249,15 @@ Function OutputAppendixA
 		If($MSWord -or $PDF)
 		{
 			## Add the required key/values to the hashtable
-			$WordTableRowHash = @{ 
-			ServerName = $Item.serverName; 
-			ThreadsperPort = $Item.threadsPerPort; 
-			BuffersperThread = $Item.buffersPerThread; 
-			ServerCacheTimeout = $Item.serverCacheTimeout; 
-			LocalConcurrentIOLimit = $Item.localConcurrentIoLimit; 
-			RemoteConcurrentIOLimit = $Item.remoteConcurrentIoLimit; 
-			EthernetMTU = $Item.maxTransmissionUnits; 
-			IOBurstSize = $Item.ioBurstSize; 
+			$WordTableRowHash = @{
+			ServerName = $Item.serverName;
+			ThreadsperPort = $Item.threadsPerPort;
+			BuffersperThread = $Item.buffersPerThread;
+			ServerCacheTimeout = $Item.serverCacheTimeout;
+			LocalConcurrentIOLimit = $Item.localConcurrentIoLimit;
+			RemoteConcurrentIOLimit = $Item.remoteConcurrentIoLimit;
+			EthernetMTU = $Item.maxTransmissionUnits;
+			IOBurstSize = $Item.ioBurstSize;
 			EnableNonblockingIO = $Item.nonBlockingIoEnabled}
 
 			## Add the hash to the array
@@ -11322,12 +11322,12 @@ Function OutputAppendixA
 		'Ethernet MTU',($htmlsilver -bor $htmlbold),
 		'IO Burst Size',($htmlsilver -bor $htmlbold),
 		'Enable Non-blocking IO',($htmlsilver -bor $htmlbold))
-		
+
 		$msg = ""
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
 	}
-	
+
 	Write-Verbose "$(Get-Date): `tFinished Creating Appendix A - Advanced Server Items (Server/Network)"
 	Write-Verbose "$(Get-Date): "
 }
@@ -11367,12 +11367,12 @@ Function OutputAppendixB
 		If($MSWord -or $PDF)
 		{
 			## Add the required key/values to the hashtable
-			$WordTableRowHash = @{ 
-			ServerName = $Item.serverName; 
-			BootPauseSeconds = $Item.bootPauseSeconds; 
-			MaximumBootTime = $Item.maxBootSeconds; 
-			MaximumDevicesBooting = $Item.maxBootDevicesAllowed; 
-			vDiskCreationPacing = $Item.vDiskCreatePacing; 
+			$WordTableRowHash = @{
+			ServerName = $Item.serverName;
+			BootPauseSeconds = $Item.bootPauseSeconds;
+			MaximumBootTime = $Item.maxBootSeconds;
+			MaximumDevicesBooting = $Item.maxBootDevicesAllowed;
+			vDiskCreationPacing = $Item.vDiskCreatePacing;
 			LicenseTimeout = $Item.licenseTimeout}
 
 			## Add the hash to the array
@@ -11427,7 +11427,7 @@ Function OutputAppendixB
 		'Maximum Devices Booting',($htmlsilver -bor $htmlbold),
 		'vDisk Creation Pacing',($htmlsilver -bor $htmlbold),
 		'License Timeout',($htmlsilver -bor $htmlbold))
-		
+
 		$msg = ""
 		FormatHTMLTable $msg "auto" -rowArray $rowdata -columnArray $columnHeaders
 		WriteHTMLLine 0 0 " "
@@ -11488,7 +11488,7 @@ Function ProcessScriptEnd
 		Out-File -FilePath $SIFile -Append -InputObject "AdminAddress  : $($AdminAddress)" 4>$Null
 		If($MSWORD -or $PDF)
 		{
-			Out-File -FilePath $SIFile -Append -InputObject "Company Name  : $($Script:CoName)" 4>$Null		
+			Out-File -FilePath $SIFile -Append -InputObject "Company Name  : $($Script:CoName)" 4>$Null
 			Out-File -FilePath $SIFile -Append -InputObject "Cover Page    : $($CoverPage)" 4>$Null
 		}
 		Out-File -FilePath $SIFile -Append -InputObject "Dev           : $($Dev)" 4>$Null
