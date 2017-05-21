@@ -5,17 +5,18 @@ $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
 Describe "PVS" {
 
     BeforeAll {
-        #region Get External data
-        $local = $true
+
         #Declaritive json file location
         $path = $PSScriptRoot
-        
+
         #get data into object
         $jsonLocation = Join-Path $path pvs.json
         $pvsData = Get-Content $jsonLocation | ConvertFrom-Json
 
-        if($local)
-        {
+        #region Get External data
+        $local = $true
+
+        if ($local) {
             $pvsVersion = Import-CliXml (Join-Path $path xml\pvsVersion.xml)
             $pvsFarm = Import-CliXml (Join-Path $path xml\pvsFarm.xml)
             $pvsAuthGroupFarm = Import-CliXml (Join-Path $path xml\pvsAuthGroupFarm.xml)
@@ -28,8 +29,7 @@ Describe "PVS" {
             $pvsDiskInfo = Import-CliXml (Join-Path $path xml\pvsDiskInfo.xml)
             $pvsDiskUpdateDevice = Import-CliXml (Join-Path $path xml\pvsDiskUpdateDevice.xml)
         }
-        else 
-        {
+        else {
             #Get Data from PVS Farm
 
             Import-Module "C:\Program Files\Citrix\Provisioning Services Console\Citrix.PVS.SnapIn.dll"
@@ -77,7 +77,7 @@ Describe "PVS" {
         It 'All the Security Groups that can be assigned access rights' {
             $pvsAuthGroup.AuthGroupName | Should Be $pvsData.PVSFarmInformation.Groups.AuthGroupName
         }
-        
+
         It 'License Server Name'{
             $pvsFarm.LicenseServer | Should Be $pvsData.PVSFarmInformation.Licensing.LicenseServer
         }
@@ -153,7 +153,7 @@ Describe "PVS" {
         }
     }
     $pvsSite | ForEach-Object {
-        
+
         Context "$($_.SiteName) Site Configuration"{
 
             BeforeAll {
@@ -164,7 +164,7 @@ Describe "PVS" {
             It 'Administrator credentials used for Multiple Activation Key enabled devices'{
                 $currentSite.MakUser | Should Be $siteData.Properties.MAK.MakUser
             }
-            
+
             If($pvsFarm.AutoAddEnabled -and $pvsData.PVSFarmInformation.Options.AutoAddEnabled){
                 It 'Auto-Add - Add new devices to this collection'{
                     $currentSite.DefaultCollectionName | Should Be $siteData.Properties.Options.DefaultCollectionName
@@ -178,7 +178,7 @@ Describe "PVS" {
             It 'Enable automatic vDisk updates on this site'{
                 $currentSite.EnableDiskUpdate | Should Be $siteData.Properties.vDiskUpdate.EnableDiskUpdate
             }
-            
+
             If($currentSite.EnableDiskUpdate -and $siteData.Properties.vDiskUpdate.EnableDiskUpdate){
                 It 'Server to run vDisk Updates for this site'{
                     $currentSite.DiskUpdateServerName | Should Be $siteData.Properties.vDiskUpdate.DiskUpdateServerName
@@ -235,37 +235,37 @@ Describe "PVS" {
                 }
                 It "$($currentServer.Name) Remote concurrent I`/O limit"{
                     $currentServer.RemoteConcurrentIoLimit | Should Be $serverData.Advanced.Server.RemoteConcurrentIoLimit
-                } 
+                }
                 It "$($currentServer.Name) Ethernet maximum transmission unit `(MTU`)"{
                     $currentServer.MaxTransmissionUnits | Should Be $serverData.Advanced.Network.MaxTransmissionUnits
-                } 
+                }
                 It "$($currentServer.Name) I`/O burst size"{
                     $currentServer.IoBurstSize | Should Be $serverData.Advanced.Network.IoBurstSize
-                } 
+                }
                 It "$($currentServer.Name) Enable non-blocking I`/O for network communications"{
                     $currentServer.NonBlockingIoEnabled | Should Be $serverData.Advanced.Network.NonBlockingIoEnabled
-                } 
+                }
                 It "$($currentServer.Name) Boot pause"{
                     $currentServer.BootPauseSeconds | Should Be $serverData.Advanced.Pacing.BootPauseSeconds
-                }     
+                }
                 It "$($currentServer.Name) Maximum boot time"{
                     $currentServer.MaxBootSeconds | Should Be $serverData.Advanced.Pacing.MaxBootSeconds
-                }        
+                }
                 It "$($currentServer.Name) Maximum devices booting"{
                     $currentServer.MaxBootDevicesAllowed | Should Be $serverData.Advanced.Pacing.MaxBootDevicesAllowed
-                } 
+                }
                 It "$($currentServer.Name) vDisk Creation pacing"{
                     $currentServer.VDiskCreatePacing | Should Be $serverData.Advanced.Pacing.VDiskCreatePacing
-                } 
+                }
                 It "$($currentServer.Name) License timeout"{
                     $currentServer.LicenseTimeout | Should Be $serverData.Advanced.Device.LicenseTimeout
-                }         
+                }
                 It "$($currentServer.Name) Bootstrap Verbose Mode"{
                     $pvsBootstrapOptions.VerboseMode | Should be $serverData.ConfigureBootstrap.Options.VerboseMode
-                }        
+                }
                 It "$($currentServer.Name) Interrupt Safe Mode"{
                     $pvsBootstrapOptions.InterruptSafeMode | Should be $serverData.ConfigureBootstrap.Options.InterruptSafeMode
-                } 
+                }
                 It "$($currentServer.Name) Advanced Memory Support"{
                     $pvsBootstrapOptions.PaeMode | Should be $serverData.ConfigureBootstrap.Options.PaeMode
                 }
@@ -282,7 +282,7 @@ Describe "PVS" {
                 }
                 It "$($currentServer.Name) Login General Timeout"{
                     $pvsBootstrapOptions.GeneralTimeout | Should be $serverData.ConfigureBootstrap.Options.GeneralTimeout
-                }                
+                }
             } #ForEach-Object
 
             #region Site vDisk Pool
@@ -295,35 +295,35 @@ Describe "PVS" {
                 }
                 It "$($currentDisk.Name) RAM Cache Size" {
                     $currentDisk.WriteCacheSize | Should Be $diskData.Properties.General.WriteCacheSize
-                }               
+                }
                 It "$($currentDisk.Name) Enable AD machine account password management" {
                     $currentDisk.AdPasswordEnabled | Should Be $diskData.Properties.General.AdPasswordEnabled
                 }
                 It "$($currentDisk.Name) Enable printer management" {
                     $currentDisk.PrinterManagementEnabled | Should Be $diskData.Properties.General.PrinterManagementEnabled
-                }          
+                }
                 It "$($currentDisk.Name) Enable streaming of this vDisk" {
                     $currentDisk.Enabled | Should Be $diskData.Properties.General.Enabled
-                }             
+                }
                 It "$($currentDisk.Name) Cached secrets cleanup disabled" {
                     $currentDisk.ClearCacheDisabled | Should Be $diskData.Properties.General.ClearCacheDisabled
-                }   
+                }
                 It "$($currentDisk.Name) Microsoft license type" {
                     $currentDisk.LicenseMode | Should Be $diskData.Properties.MicrosoftVolumeLicensing.LicenseMode
                 }
                 It "$($currentDisk.Name) Enable automatic updates for the vDisk" {
                     $currentDisk.AutoUpdateEnabled | Should Be $diskData.Properties.AutoUpdate.AutoUpdateEnabled
-                }    
+                }
                 It "$($currentDisk.Name) Enable vDisk Load Balancing" {
                     $currentDisk.RebalanceEnabled | Should Be $diskData.LoadBalancing.RebalanceEnabled
-                }                                                
+                }
             } #Foreach-Object vDisk
             #endregion
 
             #region vDisk Update Management
             $pvsDiskUpdateDevice | Where-Object {$_.SiteName -eq $currentSite.SiteName} | ForEach-Object {
                 $currentDiskUpdateDevice = $_
-                #$updateDeviceData = 
+                #$updateDeviceData =
             }
 
             #endregion
