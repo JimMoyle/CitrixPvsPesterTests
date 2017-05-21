@@ -50,3 +50,6 @@ If ($pesterObject.FailedCount -gt 0) {
     Write-Output 'Do Something Here'
 }
 
+#Is this a monitoring solution?
+#It fills a gap that current monitoring doesn't provide for.
+
