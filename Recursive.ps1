@@ -8,20 +8,35 @@ function Set-Text {
             ValueFromPipeline = $true,
             Mandatory = $true
         )]
-        [System.Object]$Data
+        [System.Object]$Data,
+
+        [Parameter(
+            Position = 1,
+            ValuefromPipelineByPropertyName = $true,
+            ValueFromPipeline = $true,
+            Mandatory = $false
+        )]
+        [int]$Depth = 1
     )
 
     BEGIN {
     }
 
     PROCESS {
-        if ($Data.GetType().Name -ne 'PSCustomObject') {
-            write-Host "Table Entry $($Data.ToString())"
-        }
-        else {
-            $Data | ForEach-Object {
-                Write-Host "Heading Entry $($_.ToString())"
-                $property | Set-Text
+
+        $properties = $Data | get-member -type NoteProperty | Select-Object -ExpandProperty Name
+
+        foreach ($property in $properties) {
+
+            if ($property -eq 'Sites') {
+                Write-Output 'Site'
+            }
+            if ($Data.$property.GetType().Name -ne 'PSCustomObject' -and $Data.$property.GetType().BaseType.ToString() -ne 'System.Array') {
+                Write-Host "Table Entry $property"
+            }
+            else {
+                Write-Host "Heading Entry $property $Depth"
+                $Data.$property | Set-Text -Depth ($Depth + 1)
             }
         }
     }
@@ -33,6 +48,6 @@ function Set-Text {
 
 }
 
-        $PVSdata = Get-Content "C:\Users\Jim\Dropbox (Personal)\ScriptScratch\VSCodeGit\CitrixPvsPesterTests\pvs.json" | ConvertFrom-Json
+$PVSdata = Get-Content "C:\Users\Jim\Dropbox (Personal)\ScriptScratch\VSCodeGit\CitrixPvsPesterTests\pvs.json" | ConvertFrom-Json
 
-        $PVSData | Set-Text
+$PVSData | Set-Text
