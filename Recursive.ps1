@@ -27,17 +27,27 @@ function Set-Text {
         $properties = $Data | get-member -type NoteProperty | Select-Object -ExpandProperty Name
 
         foreach ($property in $properties) {
+            try {
 
-            if ($property -eq 'Sites') {
-                Write-Output 'Site'
+                switch ($true) {
+                    ($null -eq $Data.$property) {
+                        Write-Host "Null Table Entry $property"
+                        break
+                     }
+                    ($Data.$property.GetType().Name -ne 'PSCustomObject' -and $Data.$property.GetType().BaseType.ToString() -ne 'System.Array') {
+                        Write-Host "Match Table Entry $($property.ToString())"
+                        break
+                    }
+                    Default {
+                        Write-Host "Default Heading Entry $property $Depth"
+                        $Data.$property | Set-Text -Depth ($Depth + 1)
+                    }
+                }
             }
-            if ($Data.$property.GetType().Name -ne 'PSCustomObject' -and $Data.$property.GetType().BaseType.ToString() -ne 'System.Array') {
-                Write-Host "Table Entry $property"
+            catch {
+                Write-Host 'bug'
             }
-            else {
-                Write-Host "Heading Entry $property $Depth"
-                $Data.$property | Set-Text -Depth ($Depth + 1)
-            }
+
         }
     }
 
