@@ -6,6 +6,6 @@ $script:TextOutput = ''
 
 $PVSdata = Get-Content (Join-Path $PSScriptRoot pvs.json) | ConvertFrom-Json
 
-$PVSData | Convert-ObjToDoc | set-content c:\jimm\temp.txt #Set-TextLine
+$PVSData | Convert-ObjToDoc | Set-TextLine
 
-#$script:TextOutput | Out-File c:\jimm\FinalText.txt
+$script:TextOutput | Out-File c:\jimm\FinalText.txt

@@ -1,6 +1,7 @@
 function Convert-ObjToDoc {
     <#
     .SYNOPSIS
+    Author: Jim Moyle
     Walks an object with recursion.
 
     .DESCRIPTION
@@ -75,6 +76,7 @@ function Convert-ObjToDoc {
                             Value    = $null
                             Depth    = $Depth
                         }
+                        Write-Output $output
                         break
                     }
                     ($Data.$property.GetType().Name -ne 'PSCustomObject' -and $Data.$property.GetType().BaseType.ToString() -ne 'System.Array') {
@@ -85,6 +87,7 @@ function Convert-ObjToDoc {
                             Value    = $Data.$property.ToString()
                             Depth    = $Depth
                         }
+                        Write-Output $output
                         break
                     }
                     Default {
@@ -95,15 +98,14 @@ function Convert-ObjToDoc {
                             Value    = $null
                             Depth    = $Depth
                         }
-                        $Data.$property | Set-Text -Depth ($Depth + 1)
+                        Write-Output $output
+                        $Data.$property | Convert-ObjToDoc -Depth ($Depth + 1)
                     }
                 }
             }
             catch {
                 Write-Host 'bug'
             }
-            #Output is from loop rather than gathering up so that if data is pipelined out of the function it can be worked on quicker
-            Write-Output $output
         }
     }
     END {

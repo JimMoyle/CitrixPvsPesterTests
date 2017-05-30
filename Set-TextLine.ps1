@@ -44,6 +44,7 @@ function Set-TextLine {
     PROCESS {
         #Standard amount of characters from the start of the property in a table
         $firstTableColumeWidth = 30
+
         #If this is a heading straight after a table add an extra newline
         if ($script:previousLineType -eq 'Table' -and $lineType -eq 'Heading') {
             $script:TextOutput += "`r`n"
