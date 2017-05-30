@@ -3009,73 +3009,64 @@ Function line
 	}
 }
 
-Function WriteWordLine
-#Function created by Ryan Revord
-#@rsrevord on Twitter
-#Function created to make output to Word easy in this script
-#updated 27-Mar-2015 to include font name, font size, italics and bold options
-{
-	Param([int]$style=0,
-	[int]$tabs = 0,
-	[string]$name = '',
-	[string]$value = '',
-	[string]$fontName=$Null,
-	[int]$fontSize=0,
-	[bool]$italics=$False,
-	[bool]$boldface=$False,
-	[Switch]$nonewline)
+Function WriteWordLine {
 
-	#Build output style
-	[string]$output = ""
-	Switch ($style)
-	{
-		0 {$Script:Selection.Style = $Script:MyHash.Word_NoSpacing; Break}
-		1 {$Script:Selection.Style = $Script:MyHash.Word_Heading1; Break}
-		2 {$Script:Selection.Style = $Script:MyHash.Word_Heading2; Break}
-		3 {$Script:Selection.Style = $Script:MyHash.Word_Heading3; Break}
-		4 {$Script:Selection.Style = $Script:MyHash.Word_Heading4; Break}
-		Default {$Script:Selection.Style = $Script:MyHash.Word_NoSpacing; Break}
-	}
+    [CmdletBinding()]
+    Param(
+		[int]$style = 0,
+        [int]$tabs = 0,
+        [string]$name = '',
+        [string]$value = '',
+        [string]$fontName = $Null,
+        [int]$fontSize = 0,
+        [bool]$italics = $False,
+        [bool]$boldface = $False,
+        [Switch]$nonewline
+    )
 
-	#build # of tabs
-	While($tabs -gt 0)
-	{
-		$output += "`t"; $tabs--;
-	}
+    #Build output style
+    [string]$output = ""
+    Switch ($style) {
+        0 {$Script:Selection.Style = $Script:MyHash.Word_NoSpacing; Break}
+        1 {$Script:Selection.Style = $Script:MyHash.Word_Heading1; Break}
+        2 {$Script:Selection.Style = $Script:MyHash.Word_Heading2; Break}
+        3 {$Script:Selection.Style = $Script:MyHash.Word_Heading3; Break}
+        4 {$Script:Selection.Style = $Script:MyHash.Word_Heading4; Break}
+        Default {$Script:Selection.Style = $Script:MyHash.Word_NoSpacing; Break}
+    }
 
-	If(![String]::IsNullOrEmpty($fontName))
-	{
-		$Script:Selection.Font.name = $fontName
-	}
+    #build # of tabs
+    While ($tabs -gt 0) {
+        $output += "`t"; $tabs--;
+    }
 
-	If($fontSize -ne 0)
-	{
-		$Script:Selection.Font.size = $fontSize
-	}
+    If (![String]::IsNullOrEmpty($fontName)) {
+        $Script:Selection.Font.name = $fontName
+    }
 
-	If($italics -eq $True)
-	{
-		$Script:Selection.Font.Italic = $True
-	}
+    If ($fontSize -ne 0) {
+        $Script:Selection.Font.size = $fontSize
+    }
 
-	If($boldface -eq $True)
-	{
-		$Script:Selection.Font.Bold = $True
-	}
+    If ($italics -eq $True) {
+        $Script:Selection.Font.Italic = $True
+    }
 
-	#output the rest of the parameters.
-	$output += $name + $value
-	$Script:Selection.TypeText($output)
+    If ($boldface -eq $True) {
+        $Script:Selection.Font.Bold = $True
+    }
 
-	#test for new WriteWordLine 0.
-	If($nonewline)
-	{
-		# Do nothing.
-	}
-	Else
-	{
-		$Script:Selection.TypeParagraph()
-	}
+    #output the rest of the parameters.
+    $output += $name + $value
+    $Script:Selection.TypeText($output)
+
+    #test for new WriteWordLine 0.
+    If ($nonewline) {
+        # Do nothing.
+    }
+    Else {
+        $Script:Selection.TypeParagraph()
+    }
 }
 
 #***********************************************************************************************************

@@ -6,6 +6,7 @@ function Set-TextLine {
     #created March 2011
     #updated March 2015
     #updated May 2017 by Jim Moyle
+    #@JimMoyle on twitter
     [CmdletBinding()]
     param (
 
@@ -67,6 +68,7 @@ function Set-TextLine {
                     $script:TextOutput += ' '
                     $spaces--
                 }
+                #Add the Colon and value after the spaces
                 $script:TextOutput += ": $Value"
             }
             else {

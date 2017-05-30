@@ -2,6 +2,8 @@ function Convert-ObjToDoc {
     <#
     .SYNOPSIS
     Author: Jim Moyle
+    Twitter: @JimMoyle
+    Date: May 2017
     Walks an object with recursion.
 
     .DESCRIPTION
