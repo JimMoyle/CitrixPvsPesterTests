@@ -1,5 +1,4 @@
-
-function Set-Text {
+function Convert-ObjToDoc {
     <#
     .SYNOPSIS
     Walks an object with recursion.
@@ -18,18 +17,18 @@ function Set-Text {
 
     This will walk the $PVSData object and output according to Heading and Table
 
-    Line    Property                      Value                                    Depth
-    ----    --------                      -----                                    -----
-    Table   Version                       7.13.0.13008                                 2
-    Table   FarmName                      MyFarm                                       3
-    Table   Description                                                                3
-    Heading General                                                                    2
-    Table   AuthGroupName                 JimMoyle.local/Builtin/Administrators        3
-    Table   AuthGroupName                 JimMoyle.local/Users/Domain Admins           3
-    Heading Security                                                                   2
-    Table   AuthGroupName                 JimMoyle.local/Builtin/Administrators        3
-    Table   AuthGroupName                 JimMoyle.local/Users/Domain Admins           3
-    Table   AuthGroupName                 JimMoyle.local/Users/PVSLondonSiteAdmins     3
+    LineType    Property                      Value                                    Depth
+    --------    --------                      -----                                    -----
+    Table       Version                       7.13.0.13008                                 2
+    Table       FarmName                      MyFarm                                       3
+    Table       Description                                                                3
+    Heading     General                                                                    2
+    Table       AuthGroupName                 JimMoyle.local/Builtin/Administrators        3
+    Table       AuthGroupName                 JimMoyle.local/Users/Domain Admins           3
+    Heading     Security                                                                   2
+    Table       AuthGroupName                 JimMoyle.local/Builtin/Administrators        3
+    Table       AuthGroupName                 JimMoyle.local/Users/Domain Admins           3
+    Table       AuthGroupName                 JimMoyle.local/Users/PVSLondonSiteAdmins     3
 
     .NOTES
     General notes
@@ -52,7 +51,7 @@ function Set-Text {
             ValueFromPipeline = $true,
             Mandatory = $false
         )]
-        [int]$Depth = 1
+        [int]$Depth = 0
     )
 
     BEGIN {
@@ -71,7 +70,7 @@ function Set-Text {
                     ($null -eq $Data.$property) {
                         #Write-Output "Null Table Entry $property $Depth"
                         $output = [PSCustomObject]@{
-                            Line     = 'Table'
+                            LineType = 'Table'
                             Property = $property.ToString()
                             Value    = $null
                             Depth    = $Depth
@@ -81,7 +80,7 @@ function Set-Text {
                     ($Data.$property.GetType().Name -ne 'PSCustomObject' -and $Data.$property.GetType().BaseType.ToString() -ne 'System.Array') {
                         #Write-Output "Match Table Entry $($property.ToString())"
                         $output = [PSCustomObject]@{
-                            Line     = 'Table'
+                            LineType = 'Table'
                             Property = $property.ToString()
                             Value    = $Data.$property.ToString()
                             Depth    = $Depth
@@ -91,7 +90,7 @@ function Set-Text {
                     Default {
                         #Write-Output "Default Heading Entry $property $Depth"
                         $output = [PSCustomObject]@{
-                            Line     = 'Heading'
+                            LineType = 'Heading'
                             Property = $property.ToString()
                             Value    = $null
                             Depth    = $Depth
@@ -110,7 +109,3 @@ function Set-Text {
     END {
     }
 }
-
-$PVSdata = Get-Content (Join-Path $PSScriptRoot pvs.json) | ConvertFrom-Json
-
-$PVSData | Set-Text #| Add-Content c:\jimm\pvsresult.txt
