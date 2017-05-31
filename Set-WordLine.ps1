@@ -14,12 +14,12 @@ Function Set-WordHeadingLine {
         )]
         [String]$Property,
 
-        [Parameter(
-            Position = 1,
-            ValuefromPipelineByPropertyName = $true,
-            Mandatory = $false
-        )]
-        [String]$Value,
+        # [Parameter(
+        #     Position = 1,
+        #     ValuefromPipelineByPropertyName = $true,
+        #     Mandatory = $false
+        # )]
+        # [String]$Value,
 
         [Parameter(
             Position = 2,
@@ -84,12 +84,18 @@ Function Set-WordHeadingLine {
         #Build output style
         [string]$output = ""
 
-        #Max heading depth is 9 for word.
-        if ($Depth -lt 10) {
-            $Script:Selection.Style = $Script:MyHash.Word_Heading($Depth + 1)
+        try {
+            #Max heading depth is 9 for word.
+            if ($Depth -lt 4) {
+                $headingNumber = "Word_Heading$($Depth + 1)"
+                $Script:Selection.Style = $Script:MyHash.$headingNumber
+            }
+            else {
+                $Script:Selection.Style = $Script:MyHash.Word_NoSpacing
+            }
         }
-        else {
-            $Script:Selection.Style = $Script:MyHash.Word_NoSpacing
+        catch {
+            Write-host 'bug'
         }
 
         <#Switch ($Depth) {

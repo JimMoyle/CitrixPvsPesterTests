@@ -3,8 +3,16 @@
     Get-Process -Name *word* | Stop-Process
 
     #try and fix the issue with the $CompanyName variable
-    $Script:CoName = 'JimMoyle Ltd'
+$Script:CoName = 'JimMoyle Ltd'
+$UserName = 'Jim Moyle'
+$Script:Title = 'Jim Title Test'
+$SubjectTitle = 'Jim Subject Title Test'
+
     Write-Verbose "$(Get-Date): CoName is $($Script:CoName)"
+
+    $MSWORD = $true
+
+    $Script:FileName1 = 'C:\JimM\Test.docx'
 
     $CoverPage='Sideline'
 
@@ -449,7 +457,7 @@ Function _SetDocumentProperty {
     #jeff hicks
     Param([object]$Properties, [string]$Name, [string]$Value)
     #get the property object
-    $prop = $properties | ForEach {
+    $prop = $properties | ForEach-Object {
         $propname = $_.GetType().InvokeMember("Name", "GetProperty", $Null, $_, $Null)
         If ($propname -eq $Name) {
             Return $_
@@ -1278,7 +1286,7 @@ Function Get-RegistryValue($path, $name) {
 }
 #endregion
 
-. .\Set-WordLine.ps1
+
 
 Function validStateProp( [object] $object, [string] $topLevel, [string] $secondLevel )
 {
@@ -1349,6 +1357,185 @@ Function ShowScriptOptions {
     Write-Verbose "$(Get-Date): "
 }
 
+Function SaveandCloseDocumentandShutdownWord {
+    #bug fix 1-Apr-2014
+    #reset Grammar and Spelling options back to their original settings
+    $Script:Word.Options.CheckGrammarAsYouType = $Script:CurrentGrammarOption
+    $Script:Word.Options.CheckSpellingAsYouType = $Script:CurrentSpellingOption
+
+    Write-Verbose "$(Get-Date): Save and Close document and Shutdown Word"
+    If ($Script:WordVersion -eq $wdWord2010) {
+        #the $saveFormat below passes StrictMode 2
+        #I found this at the following two links
+        #http://blogs.technet.com/b/bshukla/archive/2011/09/27/3347395.aspx
+        #http://msdn.microsoft.com/en-us/library/microsoft.office.interop.word.wdsaveformat(v=office.14).aspx
+        If ($PDF) {
+            Write-Verbose "$(Get-Date): Saving as DOCX file first before saving to PDF"
+        }
+        Else {
+            Write-Verbose "$(Get-Date): Saving DOCX file"
+        }
+        If ($AddDateTime) {
+            $Script:FileName1 += "_$(Get-Date -f yyyy-MM-dd_HHmm).docx"
+            If ($PDF) {
+                $Script:FileName2 += "_$(Get-Date -f yyyy-MM-dd_HHmm).pdf"
+            }
+        }
+        Write-Verbose "$(Get-Date): Running $($Script:WordProduct) and detected operating system $($Script:RunningOS)"
+        $saveFormat = [Enum]::Parse([Microsoft.Office.Interop.Word.WdSaveFormat], "wdFormatDocumentDefault")
+        $Script:Doc.SaveAs([REF]$Script:FileName1, [ref]$SaveFormat)
+        If ($PDF) {
+            Write-Verbose "$(Get-Date): Now saving as PDF"
+            $saveFormat = [Enum]::Parse([Microsoft.Office.Interop.Word.WdSaveFormat], "wdFormatPDF")
+            $Script:Doc.SaveAs([REF]$Script:FileName2, [ref]$saveFormat)
+        }
+    }
+    ElseIf ($Script:WordVersion -eq $wdWord2013 -or $Script:WordVersion -eq $wdWord2016) {
+        If ($PDF) {
+            Write-Verbose "$(Get-Date): Saving as DOCX file first before saving to PDF"
+        }
+        Else {
+            Write-Verbose "$(Get-Date): Saving DOCX file"
+        }
+        If ($AddDateTime) {
+            $Script:FileName1 += "_$(Get-Date -f yyyy-MM-dd_HHmm).docx"
+            If ($PDF) {
+                $Script:FileName2 += "_$(Get-Date -f yyyy-MM-dd_HHmm).pdf"
+            }
+        }
+        Write-Verbose "$(Get-Date): Running $($Script:WordProduct) and detected operating system $($Script:RunningOS)"
+        $Script:Doc.SaveAs2([REF]$Script:FileName1, [ref]$wdFormatDocumentDefault)
+        If ($PDF) {
+            Write-Verbose "$(Get-Date): Now saving as PDF"
+            $Script:Doc.SaveAs([REF]$Script:FileName2, [ref]$wdFormatPDF)
+        }
+    }
+
+    Write-Verbose "$(Get-Date): Closing Word"
+    $Script:Doc.Close()
+    $Script:Word.Quit()
+    If ($PDF) {
+        [int]$cnt = 0
+        While (Test-Path $Script:FileName1) {
+            $cnt++
+            If ($cnt -gt 1) {
+                Write-Verbose "$(Get-Date): Waiting another 10 seconds to allow Word to fully close (try # $($cnt))"
+                Start-Sleep -Seconds 10
+                $Script:Word.Quit()
+                If ($cnt -gt 2) {
+                    #kill the winword process
+
+                    #find out our session (usually "1" except on TS/RDC or Citrix)
+                    $SessionID = (Get-Process -PID $PID).SessionId
+
+                    #Find out if winword is running in our session
+                    $wordprocess = ((Get-Process 'WinWord' -ea 0)|? {$_.SessionId -eq $SessionID}).Id
+                    If ($wordprocess -gt 0) {
+                        Write-Verbose "$(Get-Date): Attempting to stop WinWord process # $($wordprocess)"
+                        Stop-Process $wordprocess -EA 0
+                    }
+                }
+            }
+            Write-Verbose "$(Get-Date): Attempting to delete $($Script:FileName1) since only $($Script:FileName2) is needed (try # $($cnt))"
+            Remove-Item $Script:FileName1 -EA 0 4>$Null
+        }
+    }
+    Write-Verbose "$(Get-Date): System Cleanup"
+    [System.Runtime.Interopservices.Marshal]::ReleaseComObject($Script:Word) | Out-Null
+    If (Test-Path variable:global:word) {
+        Remove-Variable -Name word -Scope Global 4>$Null
+    }
+    $SaveFormat = $Null
+    [gc]::collect()
+    [gc]::WaitForPendingFinalizers()
+
+    #is the winword process still running? kill it
+
+    #find out our session (usually "1" except on TS/RDC or Citrix)
+    $SessionID = (Get-Process -PID $PID).SessionId
+
+    #Find out if winword is running in our session
+    $wordprocess = $Null
+    $wordprocess = ((Get-Process 'WinWord' -ea 0)|? {$_.SessionId -eq $SessionID}).Id
+    If ($null -ne $wordprocess -and $wordprocess -gt 0) {
+        Write-Verbose "$(Get-Date): WinWord process is still running. Attempting to stop WinWord process # $($wordprocess)"
+        Stop-Process $wordprocess -EA 0
+    }
+}
+
+Function UpdateDocumentProperties
+{
+	Param([string]$AbstractTitle, [string]$SubjectTitle)
+	#Update document properties
+	If($MSWORD -or $PDF)
+	{
+        If ($Script:CoverPagesExist) {
+            Write-Verbose "$(Get-Date): Set Cover Page Properties"
+            #_SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Company" $Script:CoName
+            #_SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Title" $Script:title
+			#_SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Author" $username
+
+            #_SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Subject" $SubjectTitle
+
+            Set-DocumentProperty -Document $Script:Doc -DocProperty Title -Value $Script:title
+            Set-DocumentProperty -Document $Script:Doc -DocProperty Company -Value $Script:CoName
+            Set-DocumentProperty -Document $Script:Doc -DocProperty Author -Value $UserName
+            Set-DocumentProperty -Document $Script:Doc -DocProperty Subject -Value $SubjectTitle
+
+            #Get the Coverpage XML part
+            $cp = $Script:Doc.CustomXMLParts | Where {$_.NamespaceURI -match "coverPageProps$"}
+
+            #get the abstract XML part
+            $ab = $cp.documentelement.ChildNodes | Where {$_.basename -eq "Abstract"}
+
+            #set the text
+            If ([String]::IsNullOrEmpty($Script:CoName)) {
+                [string]$abstract = $AbstractTitle
+            }
+            Else {
+                [string]$abstract = "$($AbstractTitle) for $($Script:CoName)"
+            }
+
+            $ab.Text = $abstract
+
+            $ab = $cp.documentelement.ChildNodes | Where {$_.basename -eq "PublishDate"}
+            #set the text
+            [string]$abstract = (Get-Date -Format d).ToString()
+            $ab.Text = $abstract
+
+            Write-Verbose "$(Get-Date): Update the Table of Contents"
+            #update the Table of Contents
+            $Script:Doc.TablesOfContents.item(1).Update()
+            $cp = $Null
+            $ab = $Null
+            $abstract = $Null
+        }
+	}
+}
+
+. .\Set-WordLine.ps1
+
+. .\Recursive.ps1
+
+. .\Set-DocumentProperty.ps1
+
+Get-Process -Name *Word* | Stop-Process
+
+Start-Sleep 2
+
 CheckWordPreReq
 
 SetupWord
+
+$PVSdata = Get-Content (Join-Path $PSScriptRoot pvs.json) | ConvertFrom-Json
+
+try {
+    $PVSData | Convert-ObjToDoc | Where-Object {$_.LineType -eq 'Heading'} | Set-WordHeadingLine
+}
+catch {
+    Write-host 'bug'
+}
+
+UpdateDocumentProperties
+
+SaveandCloseDocumentandShutdownWord
