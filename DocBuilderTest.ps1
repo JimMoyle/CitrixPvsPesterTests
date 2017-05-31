@@ -1,6 +1,10 @@
 #region setup
     #Word build script
-    Get-Process -Name *word* | Stop-Process
+Get-Process -Name *word* | Stop-Process
+
+$VerbosePreference = "continue"
+$ErrorActionPreference = 'Stop'
+[string]$Script:RunningOS = (Get-WmiObject -class Win32_OperatingSystem -EA 0).Caption
 
     #try and fix the issue with the $CompanyName variable
 $Script:CoName = 'JimMoyle Ltd'
@@ -786,11 +790,16 @@ Function UpdateDocumentProperties {
     If ($MSWORD -or $PDF) {
         If ($Script:CoverPagesExist) {
             Write-Verbose "$(Get-Date): Set Cover Page Properties"
-            _SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Company" $Script:CoName
-            _SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Title" $Script:title
-            _SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Author" $username
+            #_SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Company" $Script:CoName
+            #_SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Title" $Script:title
+            #_SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Author" $username
 
-            _SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Subject" $SubjectTitle
+            #_SetDocumentProperty $Script:Doc.BuiltInDocumentProperties "Subject" $SubjectTitle
+
+            Set-DocumentProperty -Document $Script:Doc -DocProperty Title -Value $Script:title
+            Set-DocumentProperty -Document $Script:Doc -DocProperty Company -Value $Script:CoName
+            Set-DocumentProperty -Document $Script:Doc -DocProperty Author -Value $UserName
+            Set-DocumentProperty -Document $Script:Doc -DocProperty Subject -Value $SubjectTitle
 
             #Get the Coverpage XML part
             $cp = $Script:Doc.CustomXMLParts | Where {$_.NamespaceURI -match "coverPageProps$"}
