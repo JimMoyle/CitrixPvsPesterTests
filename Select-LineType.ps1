@@ -35,9 +35,9 @@ Function Select-WordLineType {
 
     BEGIN {}
     PROCESS {
-        #Switch block to correctly pass heading and tables to the correct word functions
+        #Switch block to correctly pass headings and tables to the correct word functions
         switch ($true) {
-            ($LineType -eq 'Heading' -and $previousLineType -ne 'Table') {
+            ($LineType -eq 'Heading' -and $script:previousLineType -ne 'Table') {
                 #Heading where you don't need to do anything with a previous table
                 Set-WordHeadingLine -Property $Property -Depth $Depth -LineType $LineType
                 break
@@ -47,7 +47,7 @@ Function Select-WordLineType {
                 $Script:tableLines += @{$Property = $Value}
                 break
             }
-            ($LineType -eq 'Heading' -and $previousLineType -eq 'Table') {
+            ($LineType -eq 'Heading' -and $script:previousLineType -eq 'Table') {
                 #Write table out
                 Write-Output $Script:tableLines # TODO add table function
                 #Write heading ater table
@@ -55,14 +55,15 @@ Function Select-WordLineType {
                 break
             }
             Default {
-                Write-Error "Could not determine $Property LineType. Current line type is $LineType, Previous line type was $previousLineType"
+                Write-Error "Could not determine $Property LineType. Current line type is $LineType, Previous line type was $script:previousLineType"
             }
         } #switch
+
+        #Put Current line type into variable to be read on next loop
+        $script:previousLineType = $LineType
     }
     END {}
 }
-
-#$data = Import-Csv "C:\JimM\pvsresult.txt"
 
 $data = [pscustomobject]@{LineType = 'Heading'; Property = 'General'; Value = $null; Depth = 2}
 
